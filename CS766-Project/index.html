@@ -1,0 +1,234 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>CS766 Project</title>
+        <meta name="description" content="A Novel Instance Segmentation App">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='//fonts.googleapis.com/css?family=Roboto:400,300,700|Noto+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    </head>
+    
+    <body>
+        <header class="site-header">
+            <div class="transparent-layer">
+                <h2>CS766 Project: A Novel Instance Segmentation App</h2>
+            </div>
+        </header>
+
+
+        <div class="container clearfix">
+            <aside class="author">
+                <img class="profile-image" src="./sean.png" alt="Portrait of Sean Chuang" width="200" height="200"/>
+                <p class="name">by <strong>Yun Shuian Chuang</strong></p>
+                
+                <br><br>
+                <img class="profile-image" src="./profile.jpg" alt="Portrait of Varun Sreenivasan" width="200" height="200"/>
+                <p class="name">by <strong>Varun Sreenivasan</strong></p>
+                
+            </aside>
+           
+           
+            
+            <main role="main" class="content">
+                <article class="post">
+                    <h1>Instance Segmentation with Mask R-CNN and GrabCut.</h1>
+
+                    <h2 id="background">Outline</h2>
+                    <p>We have built an exciting app that people can use for their instance segmentation tasks. Users can upload their own images
+                        and have them processed with a Mask R-CNN model and returned as an annotated image. We offer multiple modes to allow users
+                    to specify the type of objects they are  interested in. Furthermore, we provide the additional functionality of GrabCut that users
+                    can make use of to obtain the mask for a particular instance of an object. </p>
+                    <h2 id="background">Background</h2>
+                    <h5 id="instance-segmentation">Instance Segmentation</h5>
+                    
+                    <p>Instance Segmentation is a combination of object detection (classify individual objects and localize them using a bounding box) and
+                        Semantic Segmentation (classify each pixel into the given classes). Instance Segmentation involves detection and segmentation of the
+                        individual instances of objects.  
+                    </p>
+                    <p>
+                        <img src="./obj_detection.png" alt="Object Detection Kinds" title="Object Detection Tasks" /></p>
+                    <p><em>Figure 1: Understanding Instance Segmentation. (Image Source: 
+                        <a href = "https://medium.com/swlh/object-detection-and-instance-segmentation-a-detailed-overview-94ca109274f2"> Halbe, 2020</a>)</em></p>
+                    <h5 id="mask_rcnn">Mask R-CNN</h5>
+                    <p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) extends Faster R-CNN to pixel-level image segmentation. 
+                        The key point is to decouple the classification and the pixel-level mask prediction tasks. A third branch for predicting an object mask
+                        is added on top of the Faster R-CNN framework to function in parallel with the existing branches for classification and localization.
+                        This mask branch is a small fully-connected network that is applied to each RoI to predict a segmentation mask on a per pixel basis.</p>
+                    
+                    <p style="width: 550px;" class="center"><img src="./mask-rcnn.png" alt="Mask R-CNN" /></p>
+                    <p><em>Figure 2: Mask R-CNN is Faster R-CNN model with image segmentation. (Image source: <a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>)</em></p>
+                    
+                    <h5 id ="GrabCut">GrabCut</h5>
+                    <p>
+                        The GrabCut method is used to separate the object from background in an image. The user marks a rectangle around the object of interest.
+                        The outer part of the rectangle defines the definite background whilst the innter part contains an unknown combination of the object and
+                        the background. The iterative GrabCut algorithm is then used to assign each pixel in this bounding box its corresponding label of Foreground 
+                        ot Background.
+                    </p>
+                    
+                    <p style="width: 550px;" class="center">
+                        <img src="./grabcut.jfif" alt="GrabCut" title="GrabCut image" /></p>
+                    <p><em>Figure 3: GrabCut algorithm at work.</em></p>
+
+
+                    <h2 id="motivation">Motivation</h2>
+                    <p>
+                        The task of instance segmentation is extremely important for critical computer vision tasks such as those
+                        involved with autonomous vehicles. For instance, if we solely use object detection in the autonomous vehicles,
+                        there is a chance that the bounding boxes of multiple cars may overlap and this will confuse the self-driving
+                        vehicle.   Instance  segmentation  helps  overcome  this  flaw.   The  ability  to  detect  the  spatial  boundaries  of
+                        objects down to pixel level detail instead of broadly sensing their location could mean the difference between
+                        the vehicle safely navigating its way through and the vehicle striking other cars or objects.  In a world of high
+                        velocity traffic and unpredictability,  the smallest details can have some of the most serious consequences,
+                        good or bad. Instance segmentation will continue to play a crucial role in various computer vision tasks long into the
+                        future.  Autonomous vehicles, medical imaging, facial recognition, robotic procedures; all of these fields rely
+                        on being able to accurately differentiate object instances, and we are fascinated by its long term potential.
+                    </p>
+
+                    
+                    <h2 id="approach">Approach</h2>
+                    <h5 id="steps">High Level Steps</h5>
+                    
+                    <ol>
+                        <li><p>We make use of Facebook AI Research's (FAIR) Detectron2 (<a href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>) 
+                            as the Mask R-CNN package to implement instance segmentation</p></li>
+                        <li><p>We have six instance segmentation modes: 
+                            <ul>
+                                <li><p><strong>Generic</strong> - This mode provides the largest detection range for common objects.</p></li>
+                                <li><p><strong>Marine</strong> - Detect marine animals such as fish, crab, starfish and marine waste such as bottles, nets, and wreckage.</p></li>
+                                <li><p><strong>City</strong> - A mode for users who want to perform instance segmentation on urban street scenes.</p></li>
+                                <li><p><strong>Nature</strong> - For those who love squirrels and butterflies</p></li>
+                                <li><p><strong>Balloon</strong> - A mode for performing instance segmentation on frames involving balloons</p></li>
+                                <li><p><strong>Micro-Controller</strong> - Can be used for frames involving Arduino, Raspberry Pi, Lora, and ESP8266</p></li>
+                            </ul>
+
+                        </p></li>
+                        <li><p>To enhance App interactivity, we make use of the baseline model (R50-FPN) that has the lowest inference time. </p></li>
+                        <li><p>We then obtain Mask R-CNN models (either pre-trained or fine-tuned) for each of the corresponding modes.</p></li>
+                        <li><p>Implement GrabCut algorithm</p></li>
+                        <li><p>Develop App Front-End</p></li>
+                        <li><p>Integrate all the above components through App backend</p></li>
+                    </ol>
+                   
+                    <!--
+                    <h2 id="project-proposal">Project Proposal</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+
+                    <p>For this project, we focused on 3 main questions related to deep neural network based object detection methods.</p>
+                    <ol>
+                        <li><p>How sensitive are cutting edge deep object detection networks to natural noise/errors/variation in images?</p></li>
+                        <li><p>What kind of process and metrics should be used to quantify this sensitivity?</p></li>
+                        <li><p>Can our analysis be used to provide a context of which networks to use in different contexts?</p></li>
+                    </ol>
+
+                    <h5 id="importance">Importance?</h5>
+
+                    <ol>
+                        <li><p><strong>Safety Applications</strong>: A practical understanding or methodology for determining how Deepnets fail is crucial if we expect to use deep nets in safety concerned applications, such as autonomous driving.</p></li>
+                        <li><p><strong>Context Specific Applications</strong>: Field focus is on “new” networks. Little knowledge of practical use “in the wild”.</p></li>
+                        <li><p><strong>Lack of Rich Performance Metrics</strong>: Standard ML metrics don’t map very well to object detection. There aren’t rich metrics that quantify things like “color sensitivity”</p></li>
+                    </ol>
+
+                    <h5 id="current-metrics">Current Metrics</h5>
+
+                    <p>Currently, we rely on straight Precision and Recall based metrics to perform analysis. We&rsquo;ve found that most papers
+                    produce either precision only metrics, or metrics such as unweighted mean average precision, which favor
+                    high precision and low recall models (which is somewhat stated in the PASCAL paper and the original
+                    Information Retrieval paper for which mean average precision is based on). We&rsquo;ve also noticed that for many papers,
+                    the numbers presented tend to be only for &ldquo;favorable&rdquo; class categories, and aren&rsquo;t given the proper context
+                    considering class skew and P/R curve distributions. For the most part, we&rsquo;ve found that the results shown in papers
+                    are not good indications of actual network performance, and that the metrics used are more useful for discriminating
+                    between &ldquo;rough average performances&rdquo; over sets of tasks, and should <strong>not</strong> be used for determining network
+                    performance on a specific task.</p>
+
+                    <ul>
+                        <li>Precision and Recall
+                            <ul>
+                                <li>Precision: How confident are we when the model predicts a dog, that the object is a dog, and not something else?</li>
+                                <li>Recall: How many of the instances within a class are actually found?</li>
+                            </ul>
+                        </li>
+                        <li>Combinations
+                            <ul>
+                                <li>For each combination of &ldquo;Model, Image Transform Type, Class Category&rdquo;, we generate a single precision and recall value. We then use OLAP style analysis over these values to aggregate and average performance metrics to get better insight.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h6 id="precision-recall-histograms">Precision Recall Histograms</h6>
+
+                    <p>The histograms below represent the precision and recall metrics for all model, transform, and class
+                    combinations. More specifically, say for the combination of model e2e_faster_rcnn_R-50-C4_2x, a
+                    transform of &lsquo;gaussianblur_1&rsquo;, and class label &lsquo;person&rsquo;, we measured a precision of 0.714 and a recall
+                    of 0.277 (Given an Intersection over Union of 0.5). For each of the potential combinations, we generated a
+                    precision and recall, and plotted all of the measures as histograms. We did this to give us a general idea
+                    of the overall performance of the deep object detection networks. Our average precision was around 0.53,
+                    and for some classes was much higher. However, for most classes, recall was 0.25 or below (for some it
+                    was higher, but this was due to class skew and not <em>reliable</em> performance). The red squares below highlight
+                    the issues of combinations that had either high precision, or high recall, but most of these combinations
+                    were due to class skew. As we discuss later on, there tends to be a trend of high precision, low recall
+                    models for the COCO object detection data set that tends to be obscured by the traditional mean
+                    average precision metrics that are used to evaluate models. We talk more about these issues later.</p>
+
+                    <h3 id="initial-proposal-and-midterm-reports">Initial Proposal and Midterm Reports.</h3>
+
+                    <ul>
+                        <li><a href="">Initial Project Proposal</a></li>
+                        <li><a href="">Midterm Report</a></li>
+                        <li><a href="">Project Presentation</a></li>
+                        <li><a href="">Github Repository</a></li>
+                    </ul>
+-->
+                    <h2 id="reference">Reference</h2>
+
+                    <p>[1]  Kaiming He, Georgia Gkioxari, Piotr Doll ́ar, and Ross Girshick. Mask r-cnn. InProceedings of the IEEEInternational Conference on Computer Vision, pages 2961–2969, 2017.</p>
+                    <p>[2] Yuxin Wu and Alexander Kirillov and Francisco Massa and Wan-Yen Lo and Ross Girshick. Detectron2. https://github.com/facebookresearch/detectron2. 2019 </p>
+            
+
+
+                </article>
+            </main>
+        </div>
+
+        <footer class="main-footer">
+            <div class="container clearfix">
+                <p>Created by Varun Sreenivasan, Yun-Shuian Chuang, Jacob Lorenz</p>
+            </div>
+        </footer>
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    </body>
+</html>
