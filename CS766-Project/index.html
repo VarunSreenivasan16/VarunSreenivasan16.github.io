@@ -21,12 +21,15 @@
         <div class="container clearfix">
             <aside class="author">
                 <img class="profile-image" src="./sean.png" alt="Portrait of Sean Chuang" width="200" height="200"/>
-                <p class="name">by <strong>Yun Shuian Chuang</strong></p>
+                <p class="name">by <strong>Yun Shiuan Chuang</strong></p>
                 
-                <br><br>
+                <br>
                 <img class="profile-image" src="./profile.jpg" alt="Portrait of Varun Sreenivasan" width="200" height="200"/>
                 <p class="name">by <strong>Varun Sreenivasan</strong></p>
-                
+                <br>
+                <img class="profile-image" src="./jake.jpg" alt="Portrait of Jacob Lorenz" width="200" height="200"/>
+                <p class="name">by <strong>Jacob Lorenz</strong></p>
+
             </aside>
            
            
@@ -105,29 +108,149 @@
                             </ul>
 
                         </p></li>
-                        <li><p>To enhance App interactivity, we make use of the baseline model (R50-FPN) that has the lowest inference time. </p></li>
-                        <li><p>We then obtain Mask R-CNN models (either pre-trained or fine-tuned) for each of the corresponding modes.</p></li>
+                        <li><p>To enhance App interactivity, we make use of the baseline model (R50-FPN) that has the lowest inference time. Only the model for the Marine mode uses 
+                          X101-FPN because the pre-trained model requires this specific architecture. </p></li>
+                        <li><p>We then obtain Mask R-CNN models (either pre-trained or fine-tuned) for each of the corresponding modes. The fine-tuning is done on Google Colaboratory.</p></li>
                         <li><p>Implement GrabCut algorithm</p></li>
                         <li><p>Develop App Front-End</p></li>
                         <li><p>Integrate all the above components through App backend</p></li>
                     </ol>
                     
                     <h2 id ="implementation">Implementation</h2>
+                    <br>
                     <h4 id = "instance segmentation">Instance Segmentation</h4>
 
                     <p>We utilize Mask R-CNN models for each of the above modes. </p>
 
                     <ul>
+                      <li>
+                        <h5 id ="generic">Generic</h5>
+                        <p>Dataset: Large Vocabulary Instance Segmentation (<a href = "https://www.lvisdataset.org/">Gupta et. al, 2019)</a></p>
+                        <p>A dataset contains more than 2 million high quality instance segmentation masks for over 1000 entry-level 
+                          object categories in 164k images. </p>
+                        <p>The pre-trained LVIS model provided by Detectron2 is used for this mode.</p>
+
+                        <p><strong>Metrics for Bounding Box</strong></p>
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">AP</th>
+                                <th scope="col">AP50</th>
+                                <th scope="col">AP75</th>
+                                <th scope="col">APs</th>
+                                <th scope="col">APm</th>
+                                <th scope="col">APl</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>23.632</td>
+                                <td>39.284</td>
+                                <td>24.502</td>
+                                <td>18.723</td>
+                                <td>28.728</td>
+                                <td>37.372</td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                          <p><strong>Metrics for Segmentation Mask</strong></p>
+
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">AP</th>
+                                <th scope="col">AP50</th>
+                                <th scope="col">AP75</th>
+                                <th scope="col">APs</th>
+                                <th scope="col">APm</th>
+                                <th scope="col">APl</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>24.383</td>
+                                <td>37.699</td>
+                                <td>26.004</td>
+                                <td>16.690</td>
+                                <td>31.206</td>
+                                <td>41.163</td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+
+                      </li>
+                      <br>
+                        <li>
+                         
+                        <h5 id = "marine">Marine</h5>
+                        <p>Dataset: TrashCan (<a href = "https://conservancy.umn.edu/handle/11299/214865">Hong et. al, 2020)</a></p>
+                        <p>A dataset comprising of 7212 images with observations of marine animals, trash, ROVs and multiple other forms of underwater flora and fauna. 
+                          We used the instance version of the dataset that contains 22 different classes of objects. </p>
+                        <p>The pre-trained model available alongside the dataset is used for this mode. (Note: bounding box metrics aren't provided.)</p>
+                        <p><strong>Metrics for Segmentation Mask</strong></p>
+
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">AP</th>
+                                <th scope="col">AP50</th>
+                                <th scope="col">AP75</th>
+                                <th scope="col">APs</th>
+                                <th scope="col">APm</th>
+                                <th scope="col">APl</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>30.0</td>
+                                <td>55.3</td>
+                                <td>29.4</td>
+                                <td>23.2</td>
+                                <td>31.7</td>
+                                <td>48.6</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <br>
+                          <figure>
+                            <img src="./trash_can_img.png" alt="balloon" title="trash-can" /></p>
+                            <figcaption> <p><em>Inference with fine-tuned model on TrashCan test set</em></p></figcaption>
+                          </figure>
+
+                       </li>
+
+                       <br>
                         <li><h5 id = "City">City</h5>
-                        <p>Dataset: CITYSCAPES (<a href = "https://www.cityscapes-dataset.com/">Cordts et. al, 2016 </a>)</p>
+                        <p>Dataset: CityScapes (<a href = "https://www.cityscapes-dataset.com/">Cordts et. al, 2016 </a>)</p>
                         <p>A large-scale dataset comprising of a diverse set of image frames of street scenes from 50 different cities. There are 5000  images with fine annotations and 20000 with coarse annotations. 
                         </p>
-                        <p>The pre-trained CITYSCAPES model provided by Detectron2 is used.</p>
+                        <p>The pre-trained CityScapes model provided by Detectron2 is used. (Note: bounding box metrics aren't provided. Only Segm/AP and Segm/AP50 are provided. )</p>
+                        
+                        <p><strong>Metrics for Segmentation Mask</strong></p>
+
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th scope="col">AP</th>
+                              <th scope="col">AP50</th>
+                             
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>36.481</td>
+                              <td>62.219</td>
+                            </tr>
+                          </tbody>
+                        </table>
                         </li>
 
-
+                        <br>
                         <li><h5 id ="Nature">Nature</h5>
                         <p>Dataset: Nature Dataset (<a href = "https://towardsdatascience.com/custom-instance-segmentation-training-with-7-lines-of-code-ff340851e99b">Olafenwa, 2020)</a></p>
+                        <p>This is a dataset containing around 800 images of squirrels and butterfiles.</p>
                         <p>The Mask R-CNN model is obtained through fine-tuning the pre-trained COCO model using the train set. The model is then
                             evaluated on the test set.
                         </p>
@@ -180,11 +303,16 @@
                               </tr>
                             </tbody>
                           </table>
-
+                         <br>
+                          <figure>
+                            <img src="./butterfly.png" alt="butterfly" title="Butterfly" /></p>
+                            <figcaption> <p><em>Inference with fine-tuned model on Nature test set</em></p></figcaption>
+                          </figure>
                         </li>
                         <br>
-                        <li><h5 id ="balloon">Balloon</h5></li>
+                        <li><h5 id ="balloon">Balloon</h5>
                         <p>Dataset: Matterport's Balloon Dataset (<a href = "https://github.com/matterport/Mask_RCNN/releases">Waleed, 2018</a>)</p>
+                        <p>This is a small dataset provided by Matterport containing balloon instances.</p>
                         <p>The Mask R-CNN model is obtained through fine-tuning the pre-trained COCO model using the train set. The model is then
                             evaluated on the test set.
                         </p>
@@ -237,7 +365,12 @@
                               </tr>
                             </tbody>
                           </table>
-
+                          <br>
+                          <figure>
+                            <img src="./balloon_inference.png" alt="balloon" title="Balloon" /></p>
+                            <figcaption> <p><em>Inference with fine-tuned model on Balloon test set</em></p></figcaption>
+                          </figure>
+                        </li>
                         <br>
                         <li><h5 id ="micro-controller"> Micro-Controller</h5>
                         <p>Dataset: Micro-Controller Segmentation Data (<a href = "https://github.com/TannerGilbert/Detectron2-Train-a-Instance-Segmentation-Model">Tanner)</a></p>
@@ -294,72 +427,30 @@
                             </tbody>
                           </table>
 
+                          <br>
+                          <figure>
+                          <img src="./micro_controller_img.png" alt="Micro-con" title="Micro-Contoller" /></p>
+                          <figcaption> <p><em>Inference with fine-tuned model on Micro-Controller test set</em></p></figcaption>
+                        </figure>
                         </li>
+
+
                     </ul>
-                    <!--
-                    <h2 id="project-proposal">Project Proposal</h2>
-   
-
-                    <p>For this project, we focused on 3 main questions related to deep neural network based object detection methods.</p>
-                    <ol>
-                        <li><p>How sensitive are cutting edge deep object detection networks to natural noise/errors/variation in images?</p></li>
-                        <li><p>What kind of process and metrics should be used to quantify this sensitivity?</p></li>
-                        <li><p>Can our analysis be used to provide a context of which networks to use in different contexts?</p></li>
-                    </ol>
-
-                    <h5 id="importance">Importance?</h5>
-
-                    <ol>
-                        <li><p><strong>Safety Applications</strong>: A practical understanding or methodology for determining how Deepnets fail is crucial if we expect to use deep nets in safety concerned applications, such as autonomous driving.</p></li>
-                        <li><p><strong>Context Specific Applications</strong>: Field focus is on “new” networks. Little knowledge of practical use “in the wild”.</p></li>
-                        <li><p><strong>Lack of Rich Performance Metrics</strong>: Standard ML metrics don’t map very well to object detection. There aren’t rich metrics that quantify things like “color sensitivity”</p></li>
-                    </ol>
-
-                    <h5 id="current-metrics">Current Metrics</h5>
-
-                 
-                    <ul>
-                        <li>Precision and Recall
-                            <ul>
-                                <li>Precision: How confident are we when the model predicts a dog, that the object is a dog, and not something else?</li>
-                                <li>Recall: How many of the instances within a class are actually found?</li>
-                            </ul>
-                        </li>
-                        <li>Combinations
-                            <ul>
-                                <li>For each combination of &ldquo;Model, Image Transform Type, Class Category&rdquo;, we generate a single precision and recall value. We then use OLAP style analysis over these values to aggregate and average performance metrics to get better insight.</li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <h6 id="precision-recall-histograms">Precision Recall Histograms</h6>
-
-                    <p>The histograms below represent the precision and recall metrics for all model, transform, and class
-                    combinations. More specifically, say for the combination of model e2e_faster_rcnn_R-50-C4_2x, a
-                    transform of &lsquo;gaussianblur_1&rsquo;, and class label &lsquo;person&rsquo;, we measured a precision of 0.714 and a recall
-                    of 0.277 (Given an Intersection over Union of 0.5). For each of the potential combinations, we generated a
-                    precision and recall, and plotted all of the measures as histograms. We did this to give us a general idea
-                    of the overall performance of the deep object detection networks. Our average precision was around 0.53,
-                    and for some classes was much higher. However, for most classes, recall was 0.25 or below (for some it
-                    was higher, but this was due to class skew and not <em>reliable</em> performance). The red squares below highlight
-                    the issues of combinations that had either high precision, or high recall, but most of these combinations
-                    were due to class skew. As we discuss later on, there tends to be a trend of high precision, low recall
-                    models for the COCO object detection data set that tends to be obscured by the traditional mean
-                    average precision metrics that are used to evaluate models. We talk more about these issues later.</p>
-
-                    <h3 id="initial-proposal-and-midterm-reports">Initial Proposal and Midterm Reports.</h3>
-
-                    <ul>
-                        <li><a href="">Initial Project Proposal</a></li>
-                        <li><a href="">Midterm Report</a></li>
-                        <li><a href="">Project Presentation</a></li>
-                        <li><a href="">Github Repository</a></li>
-                    </ul>
--->
+                   
+                    <br>
                     <h2 id="reference">Reference</h2>
 
-                    <p>[1]  Kaiming He, Georgia Gkioxari, Piotr Dollar, and Ross Girshick. Mask r-cnn. InProceedings of the IEEEInternational Conference on Computer Vision, pages 2961–2969, 2017.</p>
+                    <p>[1]  Kaiming He, Georgia Gkioxari, Piotr Dollar, and Ross Girshick. Mask r-cnn. In Proceedings of the IEEEInternational Conference on Computer Vision, pages 2961–2969, 2017.</p>
                     <p>[2] Yuxin Wu and Alexander Kirillov and Francisco Massa and Wan-Yen Lo and Ross Girshick. Detectron2. https://github.com/facebookresearch/detectron2. 2019 </p>
+                    <p>[3] Hong, Jungseok; Fulton, Michael S; Sattar, Junaed. TrashCan 1.0 An Instance-Segmentation Labeled Dataset of Trash Observations. 
+                      Retrieved from the Data Repository for the University of Minnesota, https://doi.org/10.13020/g1gx-y834. 2020</p>
+                    <p> [4] Marius Cordts, Mohamed Omran, Sebastian Ramos, Timo Rehfeld, Markus Enzweiler, Rodrigo Benen-son,  
+                      Uwe  Franke,  Stefan  Roth, and Bernt Schiele. The cityscapes dataset for semantic urban scene understanding, 2016.</p>
+                    <p>[5] Agrim Gupta, Piotr Dollar, and Ross Girshick. A Dataset for Large Vocabulary Instance Segmentation. 
+                      Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition. 2019 </p>
+                      <p>[6] Waleed Abdulla. Mask R-CNN for object detection and instance segmentation on Keras and TensorFlow. 
+                        https://github.com/matterport/Mask_RCNN. 2017. 
+                      </p>
             
 
 
@@ -369,7 +460,7 @@
 
         <footer class="main-footer">
             <div class="container clearfix">
-                <p>Created by Varun Sreenivasan, Yun-Shuian Chuang, Jacob Lorenz</p>
+                <p>Created by Varun Sreenivasan, Yun-Shiuan Chuang, Jacob Lorenz</p>
             </div>
         </footer>
         
