@@ -80,7 +80,7 @@
         </p>
         <p>
           <img src="./images/obj_detection.png" alt="Object Detection Kinds" title="Object Detection Tasks" /></p>
-        <p><em>Figure 1: Understanding Instance Segmentation. (Image Source:
+        <p><em>Figure 1. A Brief Explanation of Instance Segmentation. (Image Source:
             <a
               href="https://medium.com/swlh/object-detection-and-instance-segmentation-a-detailed-overview-94ca109274f2">
               Halbe, 2020</a>)</em></p>
@@ -98,9 +98,9 @@
           predict a segmentation mask
           on a per pixel basis.</p>
 
-        <p style="width: 550px;" class="center"><img src="./images/mask-rcnn.png" alt="Mask R-CNN" /></p>
-        <p><em>Figure 2: Mask R-CNN is Faster R-CNN model with image segmentation. (Image source: <a
-              href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>)</em></p>
+        <p style="width: 650px;" class="center"><img src="./images/mask-rcnn-v2.png" alt="Mask R-CNN" /></p>
+        <p><em>Figure 2. The architecture of Mask R-CNN. Mask R-CNN extends R-CNN model to perform instance
+            segmentation. (Image source: <a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>)</em></p>
 
         <br>
         <h5 id="GrabCut">GrabCut</h5>
@@ -117,38 +117,15 @@
 
         <p style="width: 550px;" class="center">
           <img src="./images/grabcut.jfif" alt="GrabCut" title="GrabCut image" /></p>
-        <p><em>Figure 3: GrabCut algorithm at work.</em></p>
+        <p><em>Figure 3. GrabCut algorithm at work.</em></p>
         <br>
-        <h5 id="steps">High Level Steps</h5>
-
-        <ol>
-          <li>
-            <p></p>
-          </li>
-          <li>
-            <p>We then obtain Mask R-CNN models (either pre-trained or fine-tuned) for each of the corresponding modes.
-              The fine-tuning is done on Google Colaboratory.</p>
-          </li>
-          <li>
-            <p>Implement GrabCut algorithm</p>
-          </li>
-          <li>
-            <p>Develop App Front-End</p>
-          </li>
-          <li>
-            <p>Integrate all the above components through App backend</p>
-          </li>
-        </ol>
-        <br>
-        <br>
-
 
         <h2 id="implementation">Methods and Implementation Details</h2>
         <hr>
         <br>
-        <h5>Domain-General and Domain-specific Modes</h5>
+        <h4>Domain-General and Domain-specific Modes</h4>
         <p>To allow the users to annotate the images in different domain, we have included six instance segmentation
-          modes:
+          modes.
           <ul>
             <li>
               <p><strong>Generic</strong> - This mode provides the largest detection range for common objects.</p>
@@ -177,7 +154,8 @@
         <h4 id="instance segmentation">Mask-RCNN</h4>
         <p>We implemented the Mask-RCNN model using Facebook AI Research's (FAIR) Detectron2 (<a
             href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>). For each of the six modes
-          described above, we either used a pre-trained model or fine-tuned the model. The details for each of the
+          described above, we either used a pre-trained model or fine-tuned the model. Fine-tuning was done with Google
+          Colaboratory. The details for each of the
           datasets are elaborated below. </p>
         <p>
           Note that to enhance the app's interactivity, we decided to use the CNN backbone model that requires the least
@@ -249,7 +227,7 @@
             <figure>
               <img src="./images/lvis.png" alt="generic" title="Generic" /></p>
               <figcaption>
-                <p><em>Inference with pre-trained LVIS model on custom image</em></p>
+                <p><em>Figure 4a. Inference with pre-trained LVIS model on custom image</em></p>
               </figcaption>
             </figure>
           </li>
@@ -291,7 +269,7 @@
             <figure>
               <img src="./images/trash_can_img.png" alt="balloon" title="trash-can" /></p>
               <figcaption>
-                <p><em>Inference with fine-tuned model on TrashCan test set</em></p>
+                <p><em>Figure 4b. Inference with fine-tuned model on TrashCan test set</em></p>
               </figcaption>
             </figure>
 
@@ -329,7 +307,7 @@
             <figure>
               <img src="./images/cityscape.png" alt="city" title="City" /></p>
               <figcaption>
-                <p><em>Inference with pre-trained Cityscape model on custom city image</em></p>
+                <p><em>Figure 4c. Inference with pre-trained Cityscape model on custom city image</em></p>
               </figcaption>
             </figure>
 
@@ -399,7 +377,7 @@
             <figure>
               <img src="./images/butterfly.png" alt="butterfly" title="Butterfly" /></p>
               <figcaption>
-                <p><em>Inference with fine-tuned model on Nature test set</em></p>
+                <p><em>Figure 4d. Inference with fine-tuned model on Nature test set</em></p>
               </figcaption>
             </figure>
           </li>
@@ -466,7 +444,7 @@
             <figure>
               <img src="./images/balloon_inference.png" alt="balloon" title="Balloon" /></p>
               <figcaption>
-                <p><em>Inference with fine-tuned model on Balloon test set</em></p>
+                <p><em>Figure 4e. Inference with fine-tuned model on Balloon test set</em></p>
               </figcaption>
             </figure>
           </li>
@@ -535,7 +513,7 @@
             <figure>
               <img src="./images/micro_controller_img.png" alt="Micro-con" title="Micro-Contoller" /></p>
               <figcaption>
-                <p><em>Inference with fine-tuned model on Micro-Controller test set</em></p>
+                <p><em>Figure 4f. Inference with fine-tuned model on Micro-Controller test set</em></p>
               </figcaption>
             </figure>
           </li>
