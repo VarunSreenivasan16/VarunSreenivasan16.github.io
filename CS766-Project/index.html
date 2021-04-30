@@ -86,9 +86,6 @@
               Halbe, 2020</a>)</em></p>
 
         <br>
-        <h2 id="approach">Approaches</h2>
-        <hr>
-        <br>
         <h5 id="mask_rcnn">Mask R-CNN</h5>
         <br>
         <p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) extends Faster R-CNN to
@@ -97,7 +94,8 @@
           predicting an object mask
           is added on top of the Faster R-CNN framework to function in parallel with the existing branches for
           classification and localization.
-          This mask branch is a small fully-connected network that is applied to each RoI to predict a segmentation mask
+          This mask branch is a small fully-connected network that is applied to each region of interest (ROI) to
+          predict a segmentation mask
           on a per pixel basis.</p>
 
         <p style="width: 550px;" class="center"><img src="./images/mask-rcnn.png" alt="Mask R-CNN" /></p>
@@ -125,43 +123,7 @@
 
         <ol>
           <li>
-            <p>We make use of Facebook AI Research's (FAIR) Detectron2 (<a
-                href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>)
-              as the Mask R-CNN package to implement instance segmentation</p>
-          </li>
-          <li>
-            <p>We have six instance segmentation modes:
-              <ul>
-                <li>
-                  <p><strong>Generic</strong> - This mode provides the largest detection range for common objects.</p>
-                </li>
-                <li>
-                  <p><strong>Marine</strong> - Detect marine animals such as fish, crab, starfish and marine waste such
-                    as bottles, nets, and wreckage.</p>
-                </li>
-                <li>
-                  <p><strong>City</strong> - A mode for users who want to perform instance segmentation on urban street
-                    scenes.</p>
-                </li>
-                <li>
-                  <p><strong>Nature</strong> - For those who love squirrels and butterflies.</p>
-                </li>
-                <li>
-                  <p><strong>Balloon</strong> - A mode for performing instance segmentation on frames involving
-                    balloons.</p>
-                </li>
-                <li>
-                  <p><strong>Micro-Controller</strong> - Can be used for frames containing popular micro-controllers
-                    like Arduinos.</p>
-                </li>
-              </ul>
-
-            </p>
-          </li>
-          <li>
-            <p>To enhance App interactivity, we make use of the baseline model (R50-FPN) that has the lowest inference
-              time. Only the model for the Marine mode uses
-              X101-FPN because the pre-trained model requires this specific architecture. </p>
+            <p></p>
           </li>
           <li>
             <p>We then obtain Mask R-CNN models (either pre-trained or fine-tuned) for each of the corresponding modes.
@@ -181,12 +143,49 @@
         <br>
 
 
-        <h2 id="implementation">Implementations</h2>
+        <h2 id="implementation">Methods and Implementation Details</h2>
         <hr>
         <br>
-        <h4 id="instance segmentation">Instance Segmentation</h4>
-
-        <p>We utilize Mask R-CNN models for each of the six modes. </p>
+        <h5>Domain-General and Domain-specific Modes</h5>
+        <p>To allow the users to annotate the images in different domain, we have included six instance segmentation
+          modes:
+          <ul>
+            <li>
+              <p><strong>Generic</strong> - This mode provides the largest detection range for common objects.</p>
+            </li>
+            <li>
+              <p><strong>Marine</strong> - Detect marine animals such as fish, crab, starfish and marine waste such
+                as bottles, nets, and wreckage.</p>
+            </li>
+            <li>
+              <p><strong>City</strong> - A mode for users who want to perform instance segmentation on urban street
+                scenes.</p>
+            </li>
+            <li>
+              <p><strong>Nature</strong> - For those who love squirrels and butterflies.</p>
+            </li>
+            <li>
+              <p><strong>Balloon</strong> - A mode for performing instance segmentation on frames involving
+                balloons.</p>
+            </li>
+            <li>
+              <p><strong>Micro-Controller</strong> - Can be used for frames containing popular micro-controllers
+                like Arduinos.</p>
+            </li>
+          </ul>
+        </p>
+        <h4 id="instance segmentation">Mask-RCNN</h4>
+        <p>We implemented the Mask-RCNN model using Facebook AI Research's (FAIR) Detectron2 (<a
+            href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>). For each of the six modes
+          described above, we either used a pre-trained model or fine-tuned the model. The details for each of the
+          datasets are elaborated below. </p>
+        <p>
+          Note that to enhance the app's interactivity, we decided to use the CNN backbone model that requires the least
+          run time (R50-FPN),
+          i.e., having the shortest inference time. Only the model for the Marine mode uses the CNN backbone of X101-FPN
+          because the
+          pre-trained model requires this specific architecture.
+        </p>
 
         <ul>
           <li>
