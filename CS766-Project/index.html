@@ -98,8 +98,9 @@
           pixel-level image segmentation.
           An extra branch for
           predicting the binary mask for each of the detected instance
-          is added on top of the Faster R-CNN framework to function in parallel with the existing branches for
-          classification and localization.
+          is added on top of the Faster R-CNN framework. This mask branch functions in parallel with the existing
+          branches for
+          classification (object class prediction) and localization (bounding box prediction).
           The mask branch is a small fully-connected network that is applied to each region of interest (ROI) to
           predict a segmentation mask
           on a per pixel basis. This extra mask branch decouples the classification task from the pixel-level mask
@@ -125,8 +126,11 @@
           "probable foreground", which can be estimated as either background or foreground during the process. In
           addition, the user will also give "hints" by using a brush to highlight the region that is "sure background"
           and region that is "sure foreground". After the user submits the hints, GrabCut will then estimate the
-          foreground pixels and background pixels. This <i>give-hint-and-update-result </i> process completes one iteration of
-          GrabCut. Usually, the result the user receives after one round of iteration is not ideal. In this case, the user can give more hints and start another iteration of GrabCut. The mask will be refined iteratively until the user is satisfied with the result.
+          foreground pixels and background pixels. This <i>give-hint-and-update-result </i> process completes one
+          iteration of
+          GrabCut. Usually, the result the user receives after one round of iteration is not ideal. In this case, the
+          user can give more hints and start another iteration of GrabCut. The mask will be refined iteratively until
+          the user is satisfied with the result.
         </p>
         <p style="width: 600px;" class="center">
           <img style="width: 500px;" src="./images/grabcut-example.jpg" alt="GrabCut" title="GrabCut image" />
@@ -153,9 +157,22 @@
         <h2 id="implementation">Implementation Details</h2>
         <hr>
         <br>
+        <h4 id="instance segmentation">Mask-RCNN Model Implementation</h4>
+        <p>We implemented the Mask-RCNN model using Facebook AI Research's (FAIR) Detectron2 (<a
+            href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>).</p>
+        <p>
+          Note that to improve the app's interactivity, we decided to use the CNN backbone model that requires the
+          shortest
+          inference time (R50-FPN). Only the model for the Marine mode uses the CNN backbone of X101-FPN
+          because the
+          pre-trained model requires this specific architecture.
+        </p>
+        <br>
         <h4>Domain-General and Domain-specific Modes</h4>
-        <p>To allow the users to annotate the images in different domain, we have included six instance segmentation
-          modes.
+        <p>To allow the users to annotate the images in different domains, we have included six instance segmentation
+          modes. For each of the six modes, we either used a pre-trained model or fine-tuned the model. For larger datasets (i.e., the generic, marine, and city modes), we decided to use pre-trained models, and we only fine-tuned the models when the dataset is small (i.e., the nature, balloon, and micro-controller modes). Fine-tuning was done with Google
+          Colaboratory. The details for each of the
+          datasets are elaborated below. 
           <ul>
             <li>
               <p><strong>Generic</strong> - This mode provides the largest detection range for common objects.</p>
@@ -181,19 +198,7 @@
             </li>
           </ul>
         </p>
-        <h4 id="instance segmentation">Mask-RCNN</h4>
-        <p>We implemented the Mask-RCNN model using Facebook AI Research's (FAIR) Detectron2 (<a
-            href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>). For each of the six modes
-          described above, we either used a pre-trained model or fine-tuned the model. Fine-tuning was done with Google
-          Colaboratory. The details for each of the
-          datasets are elaborated below. </p>
-        <p>
-          Note that to improve the app's interactivity, we decided to use the CNN backbone model that requires the
-          shortest
-          inference time (R50-FPN). Only the model for the Marine mode uses the CNN backbone of X101-FPN
-          because the
-          pre-trained model requires this specific architecture.
-        </p>
+
 
         <ul>
           <li>
@@ -584,7 +589,7 @@
             <h5 id="computational resources">Computational Resources</h5>
             <p>Initially, we decided to train all the models ourselves with large dataset. However, that turned out to
               be impractical due to the computational resources we had (detailed below). Therefore, for larger datasets
-              (i.e., the generic, marine, and city modes), we decided to use pre-trained, and we only fine-tuned the
+              (i.e., the generic, marine, and city modes), we decided to use pre-trained models, and we only fine-tuned the
               models on smaller dataset (i.e., the nature, balloon, and micro-controller modes). </p>
             <ol>
               <li>To use Google Coloboratory, the dataset must be uploaded to Google drive in order for Colab to read
