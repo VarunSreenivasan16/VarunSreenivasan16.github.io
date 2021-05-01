@@ -107,7 +107,8 @@
           prediction task, resulting in a better overall performance.</p>
 
         <p>
-          The "backbone" of the underlying CNN model can be adjusted. To optimize the app's interactivity, we chose to use the CNN backbone model with the
+          The "backbone" of the underlying CNN model can be adjusted. To optimize the app's interactivity, we chose to
+          use the CNN backbone model with the
           shortest inference time (i.e., ResNet with 50 layers followed by a Feature Pyramid Network, or, R50-FPN).
         </p>
         <!-- Only the model for the Marine mode uses the CNN backbone of X101-FPN
@@ -164,15 +165,18 @@
         <h2 id="implementation">Implementation Details</h2>
         <hr>
         <br>
-        <h4 id="instance segmentation">Packages</h4>
+        <h4 id="instance segmentation">Packages and Envoronment</h4>
         <p>We implemented the Mask-RCNN model using the python package <i>Detectron2</i> (<a
             href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>), developed by Facebook AI
           Research (FAIR). As for GrubCut, we based our app on the python package <i>opencv-python</i> (<a
             href="https://github.com/opencv/opencv-python">Bradski, 2000</a>).</p>
+        <p>To ensure the app can run smoothly with minimal effort from the users, we hosted the app online with Amazon Web Services. The users can simply access the website with any browser to use the app.</p>
         <br>
         <h4>Mask-RCNN: Domain-General and Domain-specific Modes</h4>
         <p>To allow the users to annotate the images in different domains, we have included six instance segmentation
-          modes. There is one domain-general mode and five domain-specific modes. The details of the each of the mode are described below. For each of the six modes, we either used a pre-trained model or fine-tuned the model. For larger
+          modes. There is one domain-general mode and five domain-specific modes. The details of the each of the mode
+          are described below. For each of the six modes, we either used a pre-trained model or fine-tuned the model.
+          For larger
           datasets (i.e., the generic, marine, and city modes), we decided to use pre-trained models, and we only
           fine-tuned the models when the dataset is small (i.e., the nature, balloon, and micro-controller modes).
           Fine-tuning was done with Google
@@ -562,7 +566,12 @@
 
         <br>
 
-        <h2 id="approach">Challenges We Faced and Solved</h2>
+        <h2 id="demo">The Demo of the App</h2>
+        <hr>
+        <br>
+        <p>TODO</p>
+
+        <h2 id="challenges">Challenges We Faced and Solved</h2>
         <hr>
         <br>
         <ul>
