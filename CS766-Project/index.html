@@ -96,15 +96,21 @@
           instance segmentation deep learning model. It extends Faster R-CNN, a fully convolutional neural network, to
           perform
           pixel-level image segmentation.
-          An extra branch for
-          predicting the binary mask for each of the detected instance
-          is added on top of the Faster R-CNN framework. This mask branch functions in parallel with the existing
+          An extra branch is added on top of the Faster R-CNN architecture to
+          predict the binary mask for each of the detected instance. This mask branch functions in parallel with the
+          existing
           branches for
           classification (object class prediction) and localization (bounding box prediction).
           The mask branch is a small fully-connected network that is applied to each region of interest (ROI) to
           predict a segmentation mask
           on a per pixel basis. This extra mask branch decouples the classification task from the pixel-level mask
-          prediction task, which results in a better overall performance.</p>
+          prediction task, resulting in a better overall performance.</p>
+
+        <p>
+          Note that to improve the app's interactivity, we decided to use the CNN backbone model that requires the
+          shortest inference time (R50-FPN). Only the model for the Marine mode uses the CNN backbone of X101-FPN
+          because the pre-trained model requires this specific architecture.
+        </p>
 
         <p style="width: 650px;" class="center"><img src="./images/mask-rcnn-v2.png" alt="Mask R-CNN" /></p>
         <p><em>Figure 2. The architecture of Mask R-CNN. Mask R-CNN extends R-CNN model to perform instance
