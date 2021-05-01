@@ -107,10 +107,11 @@
           prediction task, resulting in a better overall performance.</p>
 
         <p>
-          Note that to improve the app's interactivity, we decided to use the CNN backbone model that requires the
-          shortest inference time (R50-FPN). Only the model for the Marine mode uses the CNN backbone of X101-FPN
-          because the pre-trained model requires this specific architecture.
+          The "backbone" of the underlying CNN model can be adjusted. To optimize the app's interactivity, we chose to use the CNN backbone model with the
+          shortest inference time (i.e., ResNet with 50 layers followed by a Feature Pyramid Network, or, R50-FPN).
         </p>
+        <!-- Only the model for the Marine mode uses the CNN backbone of X101-FPN
+          because the pre-trained model requires this specific architecture. -->
 
         <p style="width: 650px;" class="center"><img src="./images/mask-rcnn-v2.png" alt="Mask R-CNN" /></p>
         <p><em>Figure 2. The architecture of Mask R-CNN. Mask R-CNN extends R-CNN model to perform instance
