@@ -72,11 +72,11 @@
         <br>
         <h5 id="instance-segmentation">Instance Segmentation</h5>
 
-        <p>Instance Segmentation is a combination of object detection (classify individual objects and localize them
+        <p>Instance segmentation is a combination of object detection (classify individual objects and localize them
           using a bounding box) and
-          Semantic Segmentation (classify each pixel into the given classes). Instance Segmentation involves detection
+          semantic segmentation (classify each pixel into the given classes). Instance segmentation involves detection
           and segmentation of the
-          individual instances of objects.
+          individual instances of objects. In the present study, we used both a deep-learning-based algorithm (Mask-RCNN) and a graph-based algorithm that allow users' inputs (GrabCut) to perform the instance segmentation task.
         </p>
         <p>
           <img src="./images/obj_detection.png" alt="Object Detection Kinds" title="Object Detection Tasks" /></p>
@@ -88,15 +88,15 @@
         <br>
         <h5 id="mask_rcnn">Mask R-CNN</h5>
         <br>
-        <p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) extends Faster R-CNN to
+        <p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) is a state-of-the-art instance segmentation deep learning model. It extends Faster R-CNN, a fully convolutional neural network, to perform
           pixel-level image segmentation.
-          The key point is to decouple the classification and the pixel-level mask prediction tasks. A third branch for
-          predicting an object mask
+          An extra branch for
+          predicting the binary mask for each of the detected instance
           is added on top of the Faster R-CNN framework to function in parallel with the existing branches for
           classification and localization.
-          This mask branch is a small fully-connected network that is applied to each region of interest (ROI) to
+          The mask branch is a small fully-connected network that is applied to each region of interest (ROI) to
           predict a segmentation mask
-          on a per pixel basis.</p>
+          on a per pixel basis. This extra mask branch decouples the classification task from the pixel-level mask prediction task, which results in a better overall performance.</p>
 
         <p style="width: 650px;" class="center"><img src="./images/mask-rcnn-v2.png" alt="Mask R-CNN" /></p>
         <p><em>Figure 2. The architecture of Mask R-CNN. Mask R-CNN extends R-CNN model to perform instance
@@ -106,8 +106,10 @@
         <h5 id="GrabCut">GrabCut</h5>
         <br>
         <p>
-          The GrabCut method is used to separate the object from background in an image. The user marks a rectangle
-          around the object of interest.
+          To allow the users to refine the binary mask for a segmented instance, we used the GrabCut algorithm. GrabCut is a graph-based algorithm that incorporates the hints that users give to iteratively refine the instance segmentation result. Under the hood, GrabCut uses a graph to represent an image. Each node represents a pixel and the edge represents the similarity between two pixels. A Gaussian Mixture Model (GMM) is then applied to estimate the foreground (the instance of interest) and the background. 
+          
+          GrabCut first takes in In the process, First, the user marks a bounding box
+          around the instance of interest.
           The outer part of the rectangle defines the definite background whilst the innter part contains an unknown
           combination of the object and
           the background. The iterative GrabCut algorithm is then used to assign each pixel in this bounding box its
@@ -158,9 +160,8 @@
           Colaboratory. The details for each of the
           datasets are elaborated below. </p>
         <p>
-          Note that to enhance the app's interactivity, we decided to use the CNN backbone model that requires the least
-          run time (R50-FPN),
-          i.e., having the shortest inference time. Only the model for the Marine mode uses the CNN backbone of X101-FPN
+          Note that to improve the app's interactivity, we decided to use the CNN backbone model that requires the shortest
+          inference time (R50-FPN). Only the model for the Marine mode uses the CNN backbone of X101-FPN
           because the
           pre-trained model requires this specific architecture.
         </p>
