@@ -76,7 +76,9 @@
           using a bounding box) and
           semantic segmentation (classify each pixel into the given classes). Instance segmentation involves detection
           and segmentation of the
-          individual instances of objects. In the present study, we used both a deep-learning-based algorithm (Mask-RCNN) and a graph-based algorithm that allow users' inputs (GrabCut) to perform the instance segmentation task.
+          individual instances of objects. In the present study, we used both a deep-learning-based algorithm
+          (Mask-RCNN) and a graph-based algorithm that allow users' inputs (GrabCut) to perform the instance
+          segmentation task.
         </p>
         <p>
           <img src="./images/obj_detection.png" alt="Object Detection Kinds" title="Object Detection Tasks" /></p>
@@ -88,7 +90,9 @@
         <br>
         <h5 id="mask_rcnn">Mask R-CNN</h5>
         <br>
-        <p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) is a state-of-the-art instance segmentation deep learning model. It extends Faster R-CNN, a fully convolutional neural network, to perform
+        <p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) is a state-of-the-art
+          instance segmentation deep learning model. It extends Faster R-CNN, a fully convolutional neural network, to
+          perform
           pixel-level image segmentation.
           An extra branch for
           predicting the binary mask for each of the detected instance
@@ -96,7 +100,8 @@
           classification and localization.
           The mask branch is a small fully-connected network that is applied to each region of interest (ROI) to
           predict a segmentation mask
-          on a per pixel basis. This extra mask branch decouples the classification task from the pixel-level mask prediction task, which results in a better overall performance.</p>
+          on a per pixel basis. This extra mask branch decouples the classification task from the pixel-level mask
+          prediction task, which results in a better overall performance.</p>
 
         <p style="width: 650px;" class="center"><img src="./images/mask-rcnn-v2.png" alt="Mask R-CNN" /></p>
         <p><em>Figure 2. The architecture of Mask R-CNN. Mask R-CNN extends R-CNN model to perform instance
@@ -106,20 +111,41 @@
         <h5 id="GrabCut">GrabCut</h5>
         <br>
         <p>
-          To allow the users to refine the binary mask for a segmented instance, we used the GrabCut algorithm. GrabCut is a graph-based algorithm that incorporates the hints that users give to iteratively refine the instance segmentation result. Under the hood, GrabCut uses a graph to represent an image. Each node represents a pixel and the edge represents the similarity between two pixels. A Gaussian Mixture Model (GMM) is then applied to estimate the foreground (the instance of interest) and the background. 
-          
-          GrabCut first takes in In the process, First, the user marks a bounding box
-          around the instance of interest.
-          The outer part of the rectangle defines the definite background whilst the innter part contains an unknown
-          combination of the object and
-          the background. The iterative GrabCut algorithm is then used to assign each pixel in this bounding box its
-          corresponding label of Foreground
-          ot Background.
+          To allow the users to iteratively refine the binary mask for a segmented instance, we used the GrabCut
+          algorithm. GrabCut is a graph-based algorithm that incorporates the hints that users give to iteratively
+          refine the
+          instance segmentation result. GrabCut works on one instance at a time, and will consider the instance of
+          interest as foreground and the rest as background.</p>
+        <p>
+          The figure below shows an example for how GrabCut works. First, the user shall provide a bounding box to
+          surround the instance of interest. The region outside the box will be considered as "sure background" and will
+          not switch to foreground throughout the estimation process. The region within the box will be considered as
+          "probable foreground", which can be estimated as either background or foreground during the process. In
+          addition, the user will also give "hints" by using a brush to highlight the region that is "sure background"
+          and region that is "sure foreground". After the user submits the hints, GrabCut will then estimate the
+          foreground pixels and background pixels. This <i>give-hint-and-update-result </i> process completes one iteration of
+          GrabCut. Usually, the result the user receives after one round of iteration is not ideal. In this case, the user can give more hints and start another iteration of GrabCut. The mask will be refined iteratively until the user is satisfied with the result.
+        </p>
+        <p style="width: 600px;" class="center">
+          <img style="width: 500px;" src="./images/grabcut-example.jpg" alt="GrabCut" title="GrabCut image" />
+        </p>
+        <p><em>Figure 3. An example of how the GrabCut algorithm works (Image Source:
+            <a href="https://cvg.ethz.ch/teaching/cvl/2012/grabcut-siggraph04.pdf">
+              Rother et al., 2004</a>)</em></p>
+        <br>
+        <p>
+          Under the hood (see Figure 4), GrabCut uses a graph to represent an image. Each node represents a pixel and
+          the edge represents the similarity between two pixels (e.g., the similarity in color). A Gaussian Mixture
+          Model (GMM) is then applied to separately estimate the foreground pixels (the instance of interest) and the
+          background pixels. The foreground pixels and the background pixels are identified by two distinct connected
+          subgraphs. After a user gives hints for the foreground and the background, the GMM parameters will be updated
+          accordingly and thus update the segmentation result. The can take several rounds (give hints to update the
+          result) until the user is satisfied with the result.
         </p>
 
         <p style="width: 550px;" class="center">
-          <img src="./images/grabcut.jfif" alt="GrabCut" title="GrabCut image" /></p>
-        <p><em>Figure 3. GrabCut algorithm at work.</em></p>
+          <img src="./images/grabcut-under-the-hood.png" alt="GrabCut" title="GrabCut image" /></p>
+        <p><em>Figure 4. How the GrabCur algorithm works under the hood</em></p>
         <br>
 
         <h2 id="implementation">Methods and Implementation Details</h2>
@@ -160,7 +186,8 @@
           Colaboratory. The details for each of the
           datasets are elaborated below. </p>
         <p>
-          Note that to improve the app's interactivity, we decided to use the CNN backbone model that requires the shortest
+          Note that to improve the app's interactivity, we decided to use the CNN backbone model that requires the
+          shortest
           inference time (R50-FPN). Only the model for the Marine mode uses the CNN backbone of X101-FPN
           because the
           pre-trained model requires this specific architecture.
