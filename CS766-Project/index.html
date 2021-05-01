@@ -172,12 +172,11 @@
         <br>
         <h4>Mask-RCNN: Domain-General and Domain-specific Modes</h4>
         <p>To allow the users to annotate the images in different domains, we have included six instance segmentation
-          modes. For each of the six modes, we either used a pre-trained model or fine-tuned the model. For larger
+          modes. There is one domain-general mode and five domain-specific modes. The details of the each of the mode are described below. For each of the six modes, we either used a pre-trained model or fine-tuned the model. For larger
           datasets (i.e., the generic, marine, and city modes), we decided to use pre-trained models, and we only
           fine-tuned the models when the dataset is small (i.e., the nature, balloon, and micro-controller modes).
           Fine-tuning was done with Google
-          Colaboratory (please see the links for the notebooks). The details for each of the
-          datasets are elaborated below. </p>
+          Colaboratory (please see the links for the notebooks). </p>
         <h5>Overview of the six modes</h5>
         <ul>
           <li>
@@ -210,7 +209,7 @@
         <br>
         <ol>
           <li>
-            <h6 id="generic">Generic Mode (pre-trained)</h6>
+            <h6 id="generic" class="h6">Generic Mode (pre-trained)</h6>
             <p>Dataset: Large Vocabulary Instance Segmentation (<a href="https://www.lvisdataset.org/">Gupta et. al,
                 2019)</a></p>
             <p>A large dataset that contains more than 2 million high quality instance segmentation masks for over 1000
@@ -276,7 +275,7 @@
           </li>
           <br>
           <li>
-            <h6 id="marine">Marine Mode (pre-trained)</h6>
+            <h6 id="marine" class="h6">Marine Mode (pre-trained)</h6>
             <p>Dataset: TrashCan (<a href="https://conservancy.umn.edu/handle/11299/214865">Hong et. al, 2020)</a></p>
             <p>A dataset comprising of 7212 images with observations of marine animals, trash, ROVs and multiple other
               forms of underwater flora and fauna.
@@ -319,7 +318,7 @@
 
           <br>
           <li>
-            <h6 id="City">City Mode (pre-trained)</h6>
+            <h6 id="City" class="h6">City Mode (pre-trained)</h6>
             <p>Dataset: CityScapes (<a href="https://www.cityscapes-dataset.com/">Cordts et. al, 2016 </a>)</p>
             <p>A large-scale dataset comprising of a diverse set of image frames of street scenes from 50 different
               cities. There are 5000 images with fine annotations and 20000 with coarse annotations.
@@ -357,7 +356,7 @@
 
           <br>
           <li>
-            <h6 id="Nature">Nature Mode (fine-tuned)</h6>
+            <h6 id="Nature" class="h6">Nature Mode (fine-tuned)</h6>
             <p>Dataset: Nature Dataset (<a
                 href="https://towardsdatascience.com/custom-instance-segmentation-training-with-7-lines-of-code-ff340851e99b">Olafenwa,
                 2020)</a></p>
@@ -425,7 +424,7 @@
           </li>
           <br>
           <li>
-            <h6 id="balloon">Balloon Mode (fine-tuned)</h6>
+            <h6 id="balloon" class="h6">Balloon Mode (fine-tuned)</h6>
             <p>Dataset: Matterport's Balloon Dataset (<a href="https://github.com/matterport/Mask_RCNN/releases">Waleed,
                 2018</a>)</p>
             <p>This is a small dataset provided by Matterport containing balloon instances.</p>
@@ -493,7 +492,7 @@
           <br>
 
           <li>
-            <h6 id="micro-controller"> Micro-Controller Mode (fine-tuned)</h6>
+            <h6 id="micro-controller" class="h6"> Micro-Controller Mode (fine-tuned)</h6>
             <p>Dataset: Micro-Controller Segmentation Data (<a
                 href="https://github.com/TannerGilbert/Detectron2-Train-a-Instance-Segmentation-Model">Tanner)</a></p>
             <p> A small dataset containing annotations for instances of Arduino, Raspberry Pi, Lora, and ESP8266.</p>
