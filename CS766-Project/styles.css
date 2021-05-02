@@ -22,8 +22,24 @@ h6 {
   font-weight: 300;
 }
 
-h6.h6 {
-  font-weight: bold;
+h2 {
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+}
+
+h4:not(:first-child),
+h5:not(:first-child) {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+li h5 {
+  margin-top: 1rem;
+}
+
+h6 {
+  font-size: 1.1rem !important;
+  font-weight: bold !important;
 }
 
 a {
@@ -34,6 +50,10 @@ a {
 
 a:hover {
   color: #222222;
+}
+
+li p {
+ margin-bottom: 0;
 }
 
 h1 a,
@@ -67,21 +87,20 @@ hr {
 
 .container {
   margin: 0 auto;
-  width: 1200px;
-  padding: 50px 0 0 0;
+  display: flex;
 }
 
 .author {
   text-align: center;
-  width: 25%;
-  float: left;
-  margin: 20px 5% 0px 5%;
+  margin: 2rem 0;
+}
+
+.author-item {
+  margin-bottom: 1.5rem;
 }
 
 .content {
-  width: 60%;
-  margin-right: 5%;
-  float: right;
+  margin-left: 3rem;
 }
 
 .site-header {
@@ -130,10 +149,6 @@ hr {
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
-}
-
-.post h2 {
-  margin-top: 0;
 }
 
 .post p {
@@ -264,6 +279,14 @@ hr {
   color: #FFF;
 }
 
+.table {
+  margin-bottom: 1.5rem !important;
+}
+
+.table-title {
+  margin: 1rem 0 0.5rem 0;
+}
+
 .home {
   width: 140px;
 }
@@ -287,6 +310,10 @@ hr {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   color: #979797;
+}
+
+figcaption {
+  margin-bottom: 1.5rem;
 }
 
 .author {
@@ -330,14 +357,11 @@ hr {
 
 .main-footer {
   background-color: #f3f3f3;
-  text-align: center;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
+  text-align: center;
+  padding: 2rem 0;
   color: #a2a2a2;
-}
-
-.main-footer .container {
-  padding: 30px 0;
 }
 
 .main-footer a {
@@ -350,6 +374,7 @@ hr {
 
 .main-footer p {
   font-size: 11px;
+  margin-bottom: 0;
 }
 
 body.post-template>.site-header {
@@ -364,11 +389,7 @@ body.post-template .site-header h2 .logo {
   background-size: 90px 74px;
 }
 
-@media only screen and (min-width: 720px) {
-  .container {
-    width: 100%;
-  }
-
+@media only screen and (min-width: 981px) {
   .site-header div {
     height: 400px;
   }
@@ -378,20 +399,14 @@ body.post-template .site-header h2 .logo {
   }
 }
 
-@media only screen and (max-width: 719px) {
-  .container {
-    width: 90%;
-    padding-top: 25px;
-  }
-
-  .author,
+@media only screen and (max-width: 980px) {  
   .content {
-    width: 100%;
-    margin: 0;
+    margin-left: 0;
   }
 
-  .author {
-    margin-bottom: 60px;
+  .container {
+    padding-top: 2rem;
+    flex-direction: column;
   }
 
   .site-header,

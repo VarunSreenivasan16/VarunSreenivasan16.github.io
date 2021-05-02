@@ -23,271 +23,210 @@
 
   <div class="container clearfix">
     <aside class="author">
-      <img class="profile-image" src="./images/sean.png" alt="Portrait of Sean Chuang" width="200" height="200" />
-      <p class="name">by <strong>Yun-Shiuan Chuang</strong></p>
-
-      <br>
-      <img class="profile-image" src="./images/profile.jpg" alt="Portrait of Varun Sreenivasan" width="200"
-        height="200" />
-      <p class="name">by <strong>Varun Sreenivasan</strong></p>
-      <br>
-      <img class="profile-image" src="./images/jake.jpg" alt="Portrait of Jacob Lorenz" width="200" height="200" />
-      <p class="name">by <strong>Jacob Lorenz</strong></p>
-
+      <div class="author-item">
+        <img class="profile-image" src="./images/sean.png" alt="Portrait of Sean Chuang" width="200" height="200" />
+        <p class="name">by <strong>Yun-Shiuan Chuang</strong></p>
+      </div>
+      <div class="author-item">
+        <img class="profile-image" src="./images/profile.jpg" alt="Portrait of Varun Sreenivasan" width="200"
+          height="200" />
+        <p class="name">by <strong>Varun Sreenivasan</strong></p>
+      </div>
+      <div class="author-item">
+        <img class="profile-image" src="./images/jake.jpg" alt="Portrait of Jacob Lorenz" width="200" height="200" />
+        <p class="name">by <strong>Jacob Lorenz</strong></p>
+      </div>
     </aside>
 
 
 
     <main role="main" class="content">
       <article class="post">
-        <!-- <h1>Instance Segmentation Powered by Mask R-CNN and GrabCut</h1> -->
-        <br>
-        <h2 id="background">Outline</h2>
-        <hr>
-        <p>We have built an exciting app that people can use for their instance segmentation tasks. Users can upload
-          their own images
-          and obtain the annotated image. For each object detected in the image, the annotation includes a bounding box
-          that surrounds the object, a class label (the class that the object belongs to), and a binary mask that
-          segments the object from the background. We offer multiple modes to allow users to specify the type of objects
-          they are interested in. Furthermore, we provide the interactive functionality powered by GrabCut that allows
-          users to iteratively refine the segmented results. </p>
-        <br>
-        <h2 id="motivation">Motivation</h2>
-        <hr>
-        <p>
-          The task of instance segmentation is extremely important for critical computer vision tasks such as those
-          involved with autonomous vehicles. For instance, if we solely use object detection in the autonomous vehicles,
-          there is a chance that the bounding boxes of multiple cars may overlap and this will confuse the self-driving
-          vehicle. Instance segmentation helps overcome this flaw. The ability to detect the spatial boundaries of
-          objects down to pixel level detail instead of broadly sensing their location could mean the difference between
-          the vehicle safely navigating its way through and the vehicle striking other cars or objects. In a world of
-          high
-          velocity traffic and unpredictability, the smallest details can have some of the most serious consequences.
-          Instance segmentation will continue to play a crucial role in various computer vision tasks long into the
-          future. Autonomous vehicles, medical imaging, facial recognition, robotic procedures; all of these fields rely
-          on being able to accurately differentiate object instances, and we are fascinated by its long term potential.
-        </p>
-        <h2 id="background">Background</h2>
-        <hr>
-        <br>
-        <h5 id="instance-segmentation">Instance Segmentation</h5>
+        <div>
+          <h2 id="background">Outline</h2>
+          <hr>
+          <p>We have built an exciting app that people can use for their instance segmentation tasks. Users can upload
+            their own images
+            and obtain the annotated image. For each object detected in the image, the annotation includes a bounding box
+            that surrounds the object, a class label (the class that the object belongs to), and a binary mask that
+            segments the object from the background. We offer multiple modes to allow users to specify the type of objects
+            they are interested in. Furthermore, we provide the interactive functionality powered by GrabCut that allows
+            users to iteratively refine the segmented results. </p>
+        </div>
+        <div>
+          <h2 id="motivation">Motivation</h2>
+          <hr>
+          <p>
+            The task of instance segmentation is extremely important for critical computer vision tasks such as those
+            involved with autonomous vehicles. For instance, if we solely use object detection in the autonomous vehicles,
+            there is a chance that the bounding boxes of multiple cars may overlap and this will confuse the self-driving
+            vehicle. Instance segmentation helps overcome this flaw. The ability to detect the spatial boundaries of
+            objects down to pixel level detail instead of broadly sensing their location could mean the difference between
+            the vehicle safely navigating its way through and the vehicle striking other cars or objects. In a world of
+            high
+            velocity traffic and unpredictability, the smallest details can have some of the most serious consequences.
+            Instance segmentation will continue to play a crucial role in various computer vision tasks long into the
+            future. Autonomous vehicles, medical imaging, facial recognition, robotic procedures; all of these fields rely
+            on being able to accurately differentiate object instances, and we are fascinated by its long term potential.
+          </p>
+        </div>
+        <div>
+          <h2 id="background">Background</h2>
+          <hr>
+          <h5 id="instance-segmentation">Instance Segmentation</h5>
 
-        <p>Instance segmentation is a combination of object detection (classify individual objects and localize them
-          using a bounding box) and
-          semantic segmentation (classify each pixel into the given classes). Instance segmentation involves detection
-          and segmentation of the
-          individual instances of objects. In the present study, we used both a deep-learning-based algorithm
-          (Mask-RCNN) and a graph-based algorithm that allow users' inputs (GrabCut) to perform the instance
-          segmentation task.
-        </p>
-        <p>
-          <img src="./images/obj_detection.png" alt="Object Detection Kinds" title="Object Detection Tasks" /></p>
-        <p><em>Figure 1. A Brief Explanation of Instance Segmentation. (Image Source:
-            <a
-              href="https://medium.com/swlh/object-detection-and-instance-segmentation-a-detailed-overview-94ca109274f2">
-              Halbe, 2020</a>)</em></p>
-
-        <br>
-        <h2 id="method">Methods</h2>
-        <hr>
-        <h5 id="mask_rcnn">Mask R-CNN</h5>
-        <br>
-        <p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) is a state-of-the-art
-          instance segmentation deep learning model. It extends Faster R-CNN, a fully convolutional neural network, to
-          perform
-          pixel-level image segmentation.
-          An extra branch is added on top of the Faster R-CNN architecture to
-          predict the binary mask for each of the detected instance. This mask branch functions in parallel with the
-          existing
-          branches for
-          classification (object class prediction) and localization (bounding box prediction).
-          The mask branch is a small fully-connected network that is applied to each region of interest (ROI) to
-          predict a segmentation mask
-          on a per pixel basis. This extra mask branch decouples the classification task from the pixel-level mask
-          prediction task, resulting in a better overall performance.</p>
-
-        <p>
-          The "backbone" of the underlying CNN model can be adjusted. To optimize the app's interactivity, we chose to
-          use the CNN backbone model with the
-          shortest inference time (i.e., ResNet with 50 layers followed by a Feature Pyramid Network, or, R50-FPN).
-        </p>
-        <!-- Only the model for the Marine mode uses the CNN backbone of X101-FPN
-          because the pre-trained model requires this specific architecture. -->
-
-        <p style="width: 650px;" class="center"><img src="./images/mask-rcnn-v2.png" alt="Mask R-CNN" /></p>
-        <p><em>Figure 2. The architecture of Mask R-CNN. Mask R-CNN extends R-CNN model to perform instance
-            segmentation. (Image source: <a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>)</em></p>
-
-        <br>
-        <h5 id="GrabCut">GrabCut</h5>
-        <br>
-        <p>
-          To allow the users to iteratively refine the binary mask for a segmented instance, we used the GrabCut
-          algorithm. GrabCut is a graph-based algorithm that incorporates the hints that users give to iteratively
-          refine the
-          instance segmentation result. GrabCut works on one instance at a time, and will consider the instance of
-          interest as foreground and the rest as background.</p>
-        <p>
-          The figure below shows an example for how GrabCut works. First, the user shall provide a bounding box to
-          surround the instance of interest. The region outside the box will be considered as "sure background" and will
-          not switch to foreground throughout the estimation process. The region within the box will be considered as
-          "probable foreground", which can be estimated as either background or foreground during the process. In
-          addition, the user will also give "hints" by using a brush to highlight the region that is "sure background"
-          and region that is "sure foreground". After the user submits the hints, GrabCut will then estimate the
-          foreground pixels and background pixels. This <i>give-hint-and-update-result </i> process completes one
-          iteration of
-          GrabCut. Usually, the result the user receives after one round of iteration is not ideal. In this case, the
-          user can give more hints and start another iteration of GrabCut. The mask will be refined iteratively until
-          the user is satisfied with the result.
-        </p>
-        <p style="width: 600px;" class="center">
-          <img style="width: 500px;" src="./images/grabcut-example.jpg" alt="GrabCut" title="GrabCut image" />
-        </p>
-        <p><em>Figure 3. An example of how the GrabCut algorithm works (Image Source:
-            <a href="https://cvg.ethz.ch/teaching/cvl/2012/grabcut-siggraph04.pdf">
-              Rother et al., 2004</a>)</em></p>
-        <br>
-        <p>
-          Under the hood (see Figure 4), GrabCut uses a graph to represent an image. Each node represents a pixel and
-          the edge represents the similarity between two pixels (e.g., the similarity in color). A Gaussian Mixture
-          Model (GMM) is then applied to separately estimate the foreground pixels (the instance of interest) and the
-          background pixels. The foreground pixels and the background pixels are identified by two distinct connected
-          subgraphs. After a user gives hints for the foreground and the background, the GMM parameters will be updated
-          accordingly and thus update the segmentation result. The can take several rounds (give hints to update the
-          result) until the user is satisfied with the result.
-        </p>
-
-        <p style="width: 550px;" class="center">
+          <p>Instance segmentation is a combination of object detection (classify individual objects and localize them
+            using a bounding box) and
+            semantic segmentation (classify each pixel into the given classes). Instance segmentation involves detection
+            and segmentation of the
+            individual instances of objects. In the present study, we used both a deep-learning-based algorithm
+            (Mask-RCNN) and a graph-based algorithm that allow users' inputs (GrabCut) to perform the instance
+            segmentation task.
+          </p>
+          <p>
+            <img src="./images/obj_detection.png" alt="Object Detection Kinds" title="Object Detection Tasks" /></p>
+          <figcaption>
+            <p><em>Figure 1. A Brief Explanation of Instance Segmentation. (Image Source:
+              <a
+                href="https://medium.com/swlh/object-detection-and-instance-segmentation-a-detailed-overview-94ca109274f2">
+                Halbe, 2020</a>)</em></p>
+          </figcaption>
+        </div>
+        <div>
+          <h2 id="method">Methods</h2>
+          <hr>
+          <h5 id="mask_rcnn">Mask R-CNN</h5>
+          <p>Mask R-CNN (<a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>) is a state-of-the-art
+            instance segmentation deep learning model. It extends Faster R-CNN, a fully convolutional neural network, to
+            perform
+            pixel-level image segmentation.
+            An extra branch is added on top of the Faster R-CNN architecture to
+            predict the binary mask for each of the detected instance. This mask branch functions in parallel with the
+            existing
+            branches for
+            classification (object class prediction) and localization (bounding box prediction).
+            The mask branch is a small fully-connected network that is applied to each region of interest (ROI) to
+            predict a segmentation mask
+            on a per pixel basis. This extra mask branch decouples the classification task from the pixel-level mask
+            prediction task, resulting in a better overall performance.</p>
+  
+          <p>
+            The "backbone" of the underlying CNN model can be adjusted. To optimize the app's interactivity, we chose to
+            use the CNN backbone model with the
+            shortest inference time (i.e., ResNet with 50 layers followed by a Feature Pyramid Network, or, R50-FPN).
+          </p>
+          <!-- Only the model for the Marine mode uses the CNN backbone of X101-FPN
+            because the pre-trained model requires this specific architecture. -->
+  
+          <p style="width: 650px;" class="center"><img src="./images/mask-rcnn-v2.png" alt="Mask R-CNN" /></p>
+          <figcaption>
+            <p><em>Figure 2. The architecture of Mask R-CNN. Mask R-CNN extends R-CNN model to perform instance
+              segmentation. (Image source: <a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>)</em></p>
+          </figcaption>
+  
+          <h5 id="GrabCut">GrabCut</h5>
+          <p>
+            To allow the users to iteratively refine the binary mask for a segmented instance, we used the GrabCut
+            algorithm. GrabCut is a graph-based algorithm that incorporates the hints that users give to iteratively
+            refine the
+            instance segmentation result. GrabCut works on one instance at a time, and will consider the instance of
+            interest as foreground and the rest as background.</p>
+          <p>
+            The figure below shows an example for how GrabCut works. First, the user shall provide a bounding box to
+            surround the instance of interest. The region outside the box will be considered as "sure background" and will
+            not switch to foreground throughout the estimation process. The region within the box will be considered as
+            "probable foreground", which can be estimated as either background or foreground during the process. In
+            addition, the user will also give "hints" by using a brush to highlight the region that is "sure background"
+            and region that is "sure foreground". After the user submits the hints, GrabCut will then estimate the
+            foreground pixels and background pixels. This <i>give-hint-and-update-result </i> process completes one
+            iteration of
+            GrabCut. Usually, the result the user receives after one round of iteration is not ideal. In this case, the
+            user can give more hints and start another iteration of GrabCut. The mask will be refined iteratively until
+            the user is satisfied with the result.
+          </p>
+          <p style="width: 600px;" class="center">
+            <img style="width: 500px;" src="./images/grabcut-example.jpg" alt="GrabCut" title="GrabCut image" />
+          </p>
+          <figcaption>
+            <p><em>Figure 3. An example of how the GrabCut algorithm works (Image Source:
+              <a href="https://cvg.ethz.ch/teaching/cvl/2012/grabcut-siggraph04.pdf">
+                Rother et al., 2004</a>)</em></p>
+          </figcaption>
+          
+          <p>
+            Under the hood (see Figure 4), GrabCut uses a graph to represent an image. Each node represents a pixel and
+            the edge represents the similarity between two pixels (e.g., the similarity in color). A Gaussian Mixture
+            Model (GMM) is then applied to separately estimate the foreground pixels (the instance of interest) and the
+            background pixels. The foreground pixels and the background pixels are identified by two distinct connected
+            subgraphs. After a user gives hints for the foreground and the background, the GMM parameters will be updated
+            accordingly and thus update the segmentation result. The can take several rounds (give hints to update the
+            result) until the user is satisfied with the result.
+          </p>
+  
+          <p style="width: 550px;" class="center">
           <img src="./images/grabcut-under-the-hood.png" alt="GrabCut" title="GrabCut image" /></p>
-        <p><em>Figure 4. How the GrabCut algorithm works under the hood</em></p>
-        <br>
+          <figcaption>
+            <p><em>Figure 4. How the GrabCut algorithm works under the hood</em></p>
+          </figcaption>
+        </div>
+        <div>
+          <h2 id="implementation">Implementation Details</h2>
+          <hr>
+          <h4 id="instance segmentation">Packages and Envoronment</h4>
+          <p>We implemented the Mask-RCNN model using the python package <i>Detectron2</i> (<a
+              href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>), developed by Facebook AI
+            Research (FAIR). As for GrubCut, we based our app on the python package <i>opencv-python</i> (<a
+              href="https://github.com/opencv/opencv-python">Bradski, 2000</a>).</p>
+          <p>To ensure the app can run smoothly with minimal effort from the users, we hosted the app online with Amazon Web Services. The users can simply access the website with any browser to use the app.</p>
+          <h4>Mask-RCNN: Domain-General and Domain-specific Modes</h4>
+          <p>To allow the users to annotate the images in different domains, we have included six instance segmentation
+            modes. There is one domain-general mode and five domain-specific modes. The details of the each of the mode
+            are described below. For each of the six modes, we either used a pre-trained model or fine-tuned the model.
+            For larger
+            datasets (i.e., the generic, marine, and city modes), we decided to use pre-trained models, and we only
+            fine-tuned the models when the dataset is small (i.e., the nature, balloon, and micro-controller modes).
+            Fine-tuning was done with Google
+            Colaboratory (please see the links for the notebooks). </p>
+          <h5>Overview of the six modes</h5>
+          <ul>
+            <li>
+              <p><strong>Generic</strong> - This mode provides the largest detection coverage for common objects (1203
+                common objects).</p>
+            </li>
+            <li>
+              <p><strong>Marine</strong> - Specifically for detecting marine animals such as fish, crab, starfish and
+                marine waste such
+                as bottles, nets, and wreckage.</p>
+            </li>
+            <li>
+              <p><strong>City</strong> - Specifically for detecting objects common in urban street
+                scenes.</p>
+            </li>
+            <li>
+              <p><strong>Nature</strong> - Specifically for detecting squirrels and butterflies.</p>
+            </li>
+            <li>
+              <p><strong>Balloon</strong> - Specifically for detecting
+                balloons.</p>
+            </li>
+            <li>
+              <p><strong>Micro-Controller</strong> - Specifically for detecting common micro-controllers
+                (e.g., Arduinos).</p>
+            </li>
+          </ul>
 
-        <h2 id="implementation">Implementation Details</h2>
-        <hr>
-        <br>
-        <h4 id="instance segmentation">Packages and Envoronment</h4>
-        <p>We implemented the Mask-RCNN model using the python package <i>Detectron2</i> (<a
-            href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>), developed by Facebook AI
-          Research (FAIR). As for GrubCut, we based our app on the python package <i>opencv-python</i> (<a
-            href="https://github.com/opencv/opencv-python">Bradski, 2000</a>).</p>
-        <p>To ensure the app can run smoothly with minimal effort from the users, we hosted the app online with Amazon Web Services. The users can simply access the website with any browser to use the app.</p>
-        <br>
-        <h4>Mask-RCNN: Domain-General and Domain-specific Modes</h4>
-        <p>To allow the users to annotate the images in different domains, we have included six instance segmentation
-          modes. There is one domain-general mode and five domain-specific modes. The details of the each of the mode
-          are described below. For each of the six modes, we either used a pre-trained model or fine-tuned the model.
-          For larger
-          datasets (i.e., the generic, marine, and city modes), we decided to use pre-trained models, and we only
-          fine-tuned the models when the dataset is small (i.e., the nature, balloon, and micro-controller modes).
-          Fine-tuning was done with Google
-          Colaboratory (please see the links for the notebooks). </p>
-        <h5>Overview of the six modes</h5>
-        <ul>
-          <li>
-            <p><strong>Generic</strong> - This mode provides the largest detection coverage for common objects (1203
-              common objects).</p>
-          </li>
-          <li>
-            <p><strong>Marine</strong> - Specifically for detecting marine animals such as fish, crab, starfish and
-              marine waste such
-              as bottles, nets, and wreckage.</p>
-          </li>
-          <li>
-            <p><strong>City</strong> - Specifically for detecting objects common in urban street
-              scenes.</p>
-          </li>
-          <li>
-            <p><strong>Nature</strong> - Specifically for detecting squirrels and butterflies.</p>
-          </li>
-          <li>
-            <p><strong>Balloon</strong> - Specifically for detecting
-              balloons.</p>
-          </li>
-          <li>
-            <p><strong>Micro-Controller</strong> - Specifically for detecting common micro-controllers
-              (e.g., Arduinos).</p>
-          </li>
-        </ul>
-        <br>
-        <h5>Details of the Six Modes</h5>
-        <br>
-        <ol>
-          <li>
-            <h6 id="generic" class="h6">Generic Mode (pre-trained)</h6>
-            <p>Dataset: Large Vocabulary Instance Segmentation (<a href="https://www.lvisdataset.org/">Gupta et. al,
-                2019</a>)</p>
-            <p>A large dataset that contains more than 2 million high quality instance segmentation masks for over 1000
-              entry-level
-              object categories in 164k images. </p>
-            <p>The pre-trained LVIS model provided by Detectron2 is used for this mode.</p>
+          <h5>Details of the Six Modes</h5>
+          <ol>
+            <li>
+              <h6 id="generic">Generic Mode (pre-trained)</h6>
+              <p>Dataset: Large Vocabulary Instance Segmentation (<a href="https://www.lvisdataset.org/">Gupta et. al,
+                  2019</a>)</p>
+              <p>A large dataset that contains more than 2 million high quality instance segmentation masks for over 1000
+                entry-level
+                object categories in 164k images. </p>
+              <p>The pre-trained LVIS model provided by Detectron2 is used for this mode.</p>
 
-            <p><strong>Metrics for Bounding Box</strong></p>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
-                  <th scope="col">AP75</th>
-                  <th scope="col">APs</th>
-                  <th scope="col">APm</th>
-                  <th scope="col">APl</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>23.632</td>
-                  <td>39.284</td>
-                  <td>24.502</td>
-                  <td>18.723</td>
-                  <td>28.728</td>
-                  <td>37.372</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <p><strong>Metrics for Segmentation Mask</strong></p>
-
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
-                  <th scope="col">AP75</th>
-                  <th scope="col">APs</th>
-                  <th scope="col">APm</th>
-                  <th scope="col">APl</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>24.383</td>
-                  <td>37.699</td>
-                  <td>26.004</td>
-                  <td>16.690</td>
-                  <td>31.206</td>
-                  <td>41.163</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-            <figure>
-              <img src="./images/lvis.png" alt="generic" title="Generic" /></p>
-              <figcaption>
-                <p><em>Figure 4a. Inference with pre-trained LVIS model on custom image</em></p>
-              </figcaption>
-            </figure>
-          </li>
-          <br>
-          <li>
-            <h6 id="marine" class="h6">Marine Mode (pre-trained)</h6>
-            <p>Dataset: TrashCan (<a href="https://conservancy.umn.edu/handle/11299/214865">Hong et. al, 2020</a>)</p>
-            <p>A dataset comprising of 7212 images with observations of marine animals, trash, ROVs and multiple other
-              forms of underwater flora and fauna.
-              We used the instance version of the dataset that contains 22 different classes of objects. </p>
-            <p>The pre-trained model available alongside the dataset is used for this mode. (Note: bounding box metrics
-              in the paper are for a Faster R-CNN model.)</p>
-
-              <p><strong>Metrics for Bounding Box</strong></p>
+              <p class="table-title"><strong>Metrics for Bounding Box</strong></p>
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -301,456 +240,500 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>34.5</td>
-                    <td>55.4</td>
-                    <td>38.1</td>
-                    <td>27.6</td>
-                    <td>36.2</td>
-                    <td>51.4</td>
+                    <td>23.632</td>
+                    <td>39.284</td>
+                    <td>24.502</td>
+                    <td>18.723</td>
+                    <td>28.728</td>
+                    <td>37.372</td>
                   </tr>
                 </tbody>
               </table>
 
-            <p><strong>Metrics for Segmentation Mask</strong></p>
+              <p class="table-title"><strong>Metrics for Segmentation Mask</strong></p>
 
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
-                  <th scope="col">AP75</th>
-                  <th scope="col">APs</th>
-                  <th scope="col">APm</th>
-                  <th scope="col">APl</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>30.0</td>
-                  <td>55.3</td>
-                  <td>29.4</td>
-                  <td>23.2</td>
-                  <td>31.7</td>
-                  <td>48.6</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-            <figure>
-              <img src="./images/trash_can_img.png" alt="balloon" title="trash-can" /></p>
-              <figcaption>
-                <p><em>Figure 4b. Inference with fine-tuned model on TrashCan test set</em></p>
-              </figcaption>
-            </figure>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">AP50</th>
+                    <th scope="col">AP75</th>
+                    <th scope="col">APs</th>
+                    <th scope="col">APm</th>
+                    <th scope="col">APl</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>24.383</td>
+                    <td>37.699</td>
+                    <td>26.004</td>
+                    <td>16.690</td>
+                    <td>31.206</td>
+                    <td>41.163</td>
+                  </tr>
+                </tbody>
+              </table>
+              <figure>
+                <img src="./images/lvis.png" alt="generic" title="Generic" /></p>
+                <figcaption>
+                  <p><em>Figure 4a. Inference with pre-trained LVIS model on custom image</em></p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <h6 id="marine">Marine Mode (pre-trained)</h6>
+              <p>Dataset: TrashCan (<a href="https://conservancy.umn.edu/handle/11299/214865">Hong et. al, 2020</a>)</p>
+              <p>A dataset comprising of 7212 images with observations of marine animals, trash, ROVs and multiple other
+                forms of underwater flora and fauna.
+                We used the instance version of the dataset that contains 22 different classes of objects. </p>
+              <p>The pre-trained model available alongside the dataset is used for this mode. (Note: bounding box metrics
+                in the paper are for a Faster R-CNN model.)</p>
 
-          </li>
+                <p class="table-title"><strong>Metrics for Bounding Box</strong></p>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">AP</th>
+                      <th scope="col">AP50</th>
+                      <th scope="col">AP75</th>
+                      <th scope="col">APs</th>
+                      <th scope="col">APm</th>
+                      <th scope="col">APl</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>34.5</td>
+                      <td>55.4</td>
+                      <td>38.1</td>
+                      <td>27.6</td>
+                      <td>36.2</td>
+                      <td>51.4</td>
+                    </tr>
+                  </tbody>
+                </table>
 
-          <br>
-          <li>
-            <h6 id="City" class="h6">City Mode (pre-trained)</h6>
-            <p>Dataset: CityScapes (<a href="https://www.cityscapes-dataset.com/">Cordts et. al, 2016</a>)</p>
-            <p>A large-scale dataset comprising of a diverse set of image frames of street scenes from 50 different
-              cities. There are 5000 images with fine annotations and 20000 with coarse annotations.
-            </p>
-            <p>The pre-trained CityScapes model provided by Detectron2 is used. (Note: bounding box metrics aren't
-              provided. Only Segm/AP and Segm/AP50 are provided. )</p>
+              <p class="table-title"><strong>Metrics for Segmentation Mask</strong></p>
 
-            <p><strong>Metrics for Segmentation Mask</strong></p>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">AP50</th>
+                    <th scope="col">AP75</th>
+                    <th scope="col">APs</th>
+                    <th scope="col">APm</th>
+                    <th scope="col">APl</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>30.0</td>
+                    <td>55.3</td>
+                    <td>29.4</td>
+                    <td>23.2</td>
+                    <td>31.7</td>
+                    <td>48.6</td>
+                  </tr>
+                </tbody>
+              </table>
+              <figure>
+                <img src="./images/trash_can_img.png" alt="balloon" title="trash-can" /></p>
+                <figcaption>
+                  <p><em>Figure 4b. Inference with fine-tuned model on TrashCan test set</em></p>
+                </figcaption>
+              </figure>
+            </li>
 
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
+            <li>
+              <h6 id="City">City Mode (pre-trained)</h6>
+              <p>Dataset: CityScapes (<a href="https://www.cityscapes-dataset.com/">Cordts et. al, 2016</a>)</p>
+              <p>A large-scale dataset comprising of a diverse set of image frames of street scenes from 50 different
+                cities. There are 5000 images with fine annotations and 20000 with coarse annotations.
+              </p>
+              <p>The pre-trained CityScapes model provided by Detectron2 is used. (Note: bounding box metrics aren't
+                provided. Only Segm/AP and Segm/AP50 are provided. )</p>
 
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>36.481</td>
-                  <td>62.219</td>
-                </tr>
-              </tbody>
-            </table>
+              <p class="table-title"><strong>Metrics for Segmentation Mask</strong></p>
 
-            <br>
-            <figure>
-              <img src="./images/cityscape.png" alt="city" title="City" /></p>
-              <figcaption>
-                <p><em>Figure 4c. Inference with pre-trained Cityscape model on custom city image</em></p>
-              </figcaption>
-            </figure>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">AP50</th>
 
-          </li>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>36.481</td>
+                    <td>62.219</td>
+                  </tr>
+                </tbody>
+              </table>
 
-          <br>
-          <li>
-            <h6 id="Nature" class="h6">Nature Mode (fine-tuned)</h6>
-            <p>Dataset: Nature Dataset (<a
-                href="https://towardsdatascience.com/custom-instance-segmentation-training-with-7-lines-of-code-ff340851e99b">Olafenwa,
-                2020</a>)</p>
-            <p>This is a dataset containing around 800 images of squirrels and butterfiles.</p>
-            <p>The Mask R-CNN model is obtained through fine-tuning (<a href = "https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Nature.ipynb">Code</a>)
-              the pre-trained COCO model using the train set. The training 
-              parameters used are the same as that provided in the demo, which is alongside the dataset. The
-              model is then
-              evaluated on the test set.
-            </p>
+              <figure>
+                <img src="./images/cityscape.png" alt="city" title="City" /></p>
+                <figcaption>
+                  <p><em>Figure 4c. Inference with pre-trained Cityscape model on custom city image</em></p>
+                </figcaption>
+              </figure>
+            </li>
 
-
-            <p><strong>Training Parameters</strong></p>
-
-            <ul>
-              <li>cfg.SOLVER.IMS_PER_BATCH = 2</li>
-              <li>cfg.SOLVER.BASE_LR = 0.00025</li>
-              <li>cfg.SOLVER.MAX_ITER = 1000</li>
-              <li>cfg.MODEL.ROI_HEADS.NUM_CLASSES = 2</li>
-            </ul>
-
-            <br>
-            <p><strong>Metrics for Bounding Box</strong></p>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
-                  <th scope="col">AP75</th>
-                  <th scope="col">APs</th>
-                  <th scope="col">APm</th>
-                  <th scope="col">APl</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>63.750</td>
-                  <td>96.952</td>
-                  <td>75.514</td>
-                  <td>nan</td>
-                  <td>nan</td>
-                  <td>64.126</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <p><strong>Metrics for Segmentation Mask</strong></p>
-
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
-                  <th scope="col">AP75</th>
-                  <th scope="col">APs</th>
-                  <th scope="col">APm</th>
-                  <th scope="col">APl</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>73.770</td>
-                  <td>96.442</td>
-                  <td>84.619</td>
-                  <td>nan</td>
-                  <td>nan</td>
-                  <td>76.358</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-            <figure>
-              <img src="./images/butterfly.png" alt="butterfly" title="Butterfly" /></p>
-              <figcaption>
-                <p><em>Figure 4d. Inference with fine-tuned model on Nature test set</em></p>
-              </figcaption>
-            </figure>
-          </li>
-          <br>
-          <li>
-            <h6 id="balloon" class="h6">Balloon Mode (fine-tuned)</h6>
-            <p>Dataset: Matterport's Balloon Dataset (<a href="https://github.com/matterport/Mask_RCNN/releases">Waleed,
-                2018</a>)</p>
-            <p>This is a small dataset provided by Matterport containing balloon instances.</p>
-            <p>The Mask R-CNN model is obtained through fine-tuning (<a href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Balloon.ipynb">Code</a>) 
-              the pre-trained COCO model using the train set. The training 
-              parameters used are the same as that provided in this <a href = "https://www.kaggle.com/maartenvandevelde/object-detection-with-detectron2-pytorch">
-              demo</a>. The
-              model is then
-              evaluated on the test set.
-            </p>
-
-            <p><strong>Training Parameters</strong></p>
-            <ul>
-              <li>cfg.SOLVER.IMS_PER_BATCH = 2</li>
-              <li>cfg.SOLVER.BASE_LR = 0.00025</li>
-              <li>cfg.SOLVER.MAX_ITER = 300</li>
-              <li>cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 128</li>
-              <li>cfg.MODEL.ROI_HEADS.NUM_CLASSES = 1</li>
-            </ul>
-
-            <br>
-            <p><strong>Metrics for Bounding Box</strong></p>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
-                  <th scope="col">AP75</th>
-                  <th scope="col">APs</th>
-                  <th scope="col">APm</th>
-                  <th scope="col">APl</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>65.014</td>
-                  <td>84.353</td>
-                  <td>79.896</td>
-                  <td>9.398</td>
-                  <td>54.380</td>
-                  <td>77.943</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <p><strong>Metrics for Segmentation Mask</strong></p>
-
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
-                  <th scope="col">AP75</th>
-                  <th scope="col">APs</th>
-                  <th scope="col">APm</th>
-                  <th scope="col">APl</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>75.856</td>
-                  <td>83.622</td>
-                  <td>83.365</td>
-                  <td>7.249</td>
-                  <td>57.591</td>
-                  <td>92.700</td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-            <figure>
-              <img src="./images/balloon_inference.png" alt="balloon" title="Balloon" /></p>
-              <figcaption>
-                <p><em>Figure 4e. Inference with fine-tuned model on Balloon test set</em></p>
-              </figcaption>
-            </figure>
-          </li>
-          <br>
-
-          <li>
-            <h6 id="micro-controller" class="h6"> Micro-Controller Mode (fine-tuned)</h6>
-            <p>Dataset: Micro-Controller Segmentation Data (<a
-                href="https://github.com/TannerGilbert/Detectron2-Train-a-Instance-Segmentation-Model">Tanner</a>)</p>
-            <p> A small dataset containing annotations for instances of Arduino, Raspberry Pi, Lora, and ESP8266.</p>
-            <p>The Mask R-CNN model is obtained through fine-tuning (<a href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Micro_Controller.ipynb">Code</a>)
-               the pre-trained COCO model using the train set. The training 
-              parameters used are the same as that provided in the demo, which is alongside the dataset. The model is then
-              evaluated on the test set.
-            </p>
-
-            <p><strong>Training Parameters</strong></p>
-
-            <ul>
-              <li>cfg.SOLVER.IMS_PER_BATCH = 2</li>
-              <li>cfg.SOLVER.BASE_LR = 0.00025</li>
-              <li>cfg.SOLVER.MAX_ITER = 1000</li>
-              <li>cfg.MODEL.ROI_HEADS.NUM_CLASSES = 4</li>
-            </ul>
-            <br>
-            <p><strong>Metrics for Bounding Box</strong></p>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
-                  <th scope="col">AP75</th>
-                  <th scope="col">APs</th>
-                  <th scope="col">APm</th>
-                  <th scope="col">APl</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>76.320</td>
-                  <td>91.749</td>
-                  <td>91.749</td>
-                  <td>nan</td>
-                  <td>90.000</td>
-                  <td>80.033</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <p><strong>Metrics for Segmentation Mask</strong></p>
-
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">AP</th>
-                  <th scope="col">AP50</th>
-                  <th scope="col">AP75</th>
-                  <th scope="col">APs</th>
-                  <th scope="col">APm</th>
-                  <th scope="col">APl</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>88.020</td>
-                  <td>91.749</td>
-                  <td>91.749</td>
-                  <td>nan</td>
-                  <td>90.000</td>
-                  <td>96.894</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <br>
-            <figure>
-              <img src="./images/micro_controller_img.png" alt="Micro-con" title="Micro-Contoller" /></p>
-              <figcaption>
-                <p><em>Figure 4f. Inference with fine-tuned model on Micro-Controller test set</em></p>
-              </figcaption>
-            </figure>
-          </li>
-        </ol>
-
-        <br>
-
-        <h2 id="demo">The Demo of the App</h2>
-        <hr>
-        <br>
-        <p>TODO</p>
-
-        <h2 id="challenges">Challenges We Faced and Solved</h2>
-        <hr>
-        <br>
-        <ul>
-          <li>
-            <h5 id="refactoring">Redirecting our project</h5>
-
-            <p>We had to rapidly change the direction of our project after receiving feedback for our initial proposal.
-              Our original plan involved implementing the Mask R-CNN as in the original paper and replicating the
-              results on
-              the COCO Dataset and then implementing the model on autonomous vehicle datasets such as the Cityscapes
-              Dataset and the Indian Driving Dataset. We also intended to spend time on enhancing model performance by
-              making modifications such as tweaking the model architecture
-              (e.g., the R-CNN backbones), and exploring different training techniques (e.g., multi-scale train/test,
-              horizontal flip test).
-              We realized that this plan was impractical given the time and computer resources available. We decided to
-              change the direction and emphasis of our project
-              to deliver an end result that is both tangible and achievable.
-            </p>
-          </li>
-          <li>
-            <h5 id="platfom">Platform Independence of App</h5>
-            <p>We initially planned to develop an app that users can install and run locally. However, the core engine
-              package of instance segmentation, Detectron2, is natively supported only on Linux and Mac OS. We spent a
-              lot of time exploring workarounds to have it work on Windows OS but in vein. Therefore, we managed to host
-              the app online with the Amazon Web Services so that users with any OS can use the app.</p>
-          </li>
-          <li>
-            <h5 id="computational resources">Computational Resources</h5>
-            <p>Initially, we decided to train all the models ourselves with large dataset. However, that turned out to
-              be impractical due to the computational resources we had (detailed below). Therefore, for larger datasets
-              (i.e., the generic, marine, and city modes), we decided to use pre-trained models, and we only fine-tuned
-              the
-              models on smaller dataset (i.e., the nature, balloon, and micro-controller modes). </p>
-            <ol>
-              <li>To use Google Coloboratory, the dataset must be uploaded to Google drive in order for Colab to read
-                it. This was a significant bottleneck because uploading
-                large datasets onto Google drive is slow - with the bandwidth of 100Mbps download speed and 40Mbps
-                upload speed, uploading 1GB of files to Google drive took us
-                5 hours. Although we were able to find an existing COCO dataset on a publicly accessible Google
-                drive, other datasets we were considering (e.g., Open Images Dataset, Indian Driving Dataset) were not
-                publicly available on Google drive.</li>
-              <li>
-                The second problem was related to the limitation of the Colab environment. Even when we were able to
-                mount the public Google drive that contains the COCO dataset,
-                Colab crashed upon loading the large-scale dataset (2017 COCO training set is of size 19GB). After days
-                of research and trial and error, we
-                eventually managed a workaround using symbolic links, which ensures that Colab wouldn’t crash due to
-                being inundated by many images. This, however, requires the
-                dataset to be present on the Google drive ina specific format. we were only able to configure the 2017
-                COCO dataset into such formats, but not for other datasets.
-              </li>
-              <li>Colab was under-powered to train the Mask R-CNN model from scratch with such a large dataset. The free
-                version of Colab only provides 12.8 GB of RAM, one
-                single GPU (with 11.4MB of memory), and each session only allows 12 hours of training. More annoyingly,
-                if the browser gets idle,
-                the Colab session would be terminated automatically, which means the the client computer can’t be turned
-                off or used for other purposes
-                while training. The authors of [1] said that it took them 32 hours to train the Mask R-CNN model from
-                scratch with COCO dataset using a 8-GPU machine.
-                With an single-GPU machine, the 12-hour session limit, and
-                the termination mechanism, we deemed Colab not appropriate for such kind of heavy training task. </li>
-            </ol>
-
-          </li>
-          <br>
-          <li>
-            <h5 id="datasets">Availability of instance segmentation datasets</h5>
-            <p>There were not a lot of instance segmentation datasets to choose from while fine-tuning because we had to
-              constrain the size of the dataset to account for
-              the limited computational resources.
-            </p>
-          </li>
-        </ul>
-
-        <br>
-        <h2 id="Documents">Documents</h2>
-        <ul>
-          <li><a href="./Documents/CS_766_Proposal.pdf" target='_blank'>Project Proposal</a></li>
-          <li><a href="./Documents/CS766_Midterm_Report.pdf" target='_blank'>Midterm Report</a></li>
-        </ul>
-
-        <br>
-        <h2 id="reference">Reference</h2>
-
-        <p>[1] Kaiming He, Georgia Gkioxari, Piotr Dollar, and Ross Girshick. Mask r-cnn. In Proceedings of the
-          IEEEInternational Conference on Computer Vision, pages 2961–2969, 2017.</p>
-        <p>[2] Yuxin Wu and Alexander Kirillov and Francisco Massa and Wan-Yen Lo and Ross Girshick. Detectron2.
-          https://github.com/facebookresearch/detectron2. 2019 </p>
-        <p>[3] Hong, Jungseok; Fulton, Michael S; Sattar, Junaed. TrashCan 1.0 An Instance-Segmentation Labeled Dataset
-          of Trash Observations.
-          Retrieved from the Data Repository for the University of Minnesota, https://doi.org/10.13020/g1gx-y834. 2020
-        </p>
-        <p> [4] Marius Cordts, Mohamed Omran, Sebastian Ramos, Timo Rehfeld, Markus Enzweiler, Rodrigo Benen-son,
-          Uwe Franke, Stefan Roth, and Bernt Schiele. The cityscapes dataset for semantic urban scene understanding,
-          2016.</p>
-        <p>[5] Agrim Gupta, Piotr Dollar, and Ross Girshick. A Dataset for Large Vocabulary Instance Segmentation.
-          Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition. 2019 </p>
-        <p>[6] Waleed Abdulla. Mask R-CNN for object detection and instance segmentation on Keras and TensorFlow.
-          https://github.com/matterport/Mask_RCNN. 2017.
-        </p>
-        <p>[7] G. Varma, A. Subramanian, A. Namboodiri, M. Chandraker, and C. V. Jawahar. IDD: A Dataset for
-          Exploring Problems of Autonomous Navigation in Unconstrained Environments.
-          In 2019 IEEE WinterConference on Applications of Computer Vision (WACV), pages 1743–1751, 7</p>
-        <p>[8] Tsung-Yi Lin, Michael Maire, Serge Belongie, James Hays, Pietro Perona, Deva Ramanan, Piotr Doll ́ar,and
-          C Lawrence Zitnick.
-          Microsoft coco: Common objects in context. In European Conference onComputer Vision, pages 740–755. Springer,
-          2014.</p>
+            <li>
+              <h6 id="Nature">Nature Mode (fine-tuned)</h6>
+              <p>Dataset: Nature Dataset (<a
+                  href="https://towardsdatascience.com/custom-instance-segmentation-training-with-7-lines-of-code-ff340851e99b">Olafenwa,
+                  2020</a>)</p>
+              <p>This is a dataset containing around 800 images of squirrels and butterfiles.</p>
+              <p>The Mask R-CNN model is obtained through fine-tuning (<a href = "https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Nature.ipynb">Code</a>)
+                the pre-trained COCO model using the train set. The training 
+                parameters used are the same as that provided in the demo, which is alongside the dataset. The
+                model is then
+                evaluated on the test set.
+              </p>
 
 
+              <p class="table-title"><strong>Training Parameters</strong></p>
 
+              <ul>
+                <li>cfg.SOLVER.IMS_PER_BATCH = 2</li>
+                <li>cfg.SOLVER.BASE_LR = 0.00025</li>
+                <li>cfg.SOLVER.MAX_ITER = 1000</li>
+                <li>cfg.MODEL.ROI_HEADS.NUM_CLASSES = 2</li>
+              </ul>
+
+              <p class="table-title"><strong>Metrics for Bounding Box</strong></p>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">AP50</th>
+                    <th scope="col">AP75</th>
+                    <th scope="col">APs</th>
+                    <th scope="col">APm</th>
+                    <th scope="col">APl</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>63.750</td>
+                    <td>96.952</td>
+                    <td>75.514</td>
+                    <td>nan</td>
+                    <td>nan</td>
+                    <td>64.126</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="table-title"><strong>Metrics for Segmentation Mask</strong></p>
+
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">AP50</th>
+                    <th scope="col">AP75</th>
+                    <th scope="col">APs</th>
+                    <th scope="col">APm</th>
+                    <th scope="col">APl</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>73.770</td>
+                    <td>96.442</td>
+                    <td>84.619</td>
+                    <td>nan</td>
+                    <td>nan</td>
+                    <td>76.358</td>
+                  </tr>
+                </tbody>
+              </table>
+              <figure>
+                <img src="./images/butterfly.png" alt="butterfly" title="Butterfly" /></p>
+                <figcaption>
+                  <p><em>Figure 4d. Inference with fine-tuned model on Nature test set</em></p>
+                </figcaption>
+              </figure>
+            </li>
+            
+            <li>
+              <h6 id="balloon">Balloon Mode (fine-tuned)</h6>
+              <p>Dataset: Matterport's Balloon Dataset (<a href="https://github.com/matterport/Mask_RCNN/releases">Waleed,
+                  2018</a>)</p>
+              <p>This is a small dataset provided by Matterport containing balloon instances.</p>
+              <p>The Mask R-CNN model is obtained through fine-tuning (<a href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Balloon.ipynb">Code</a>) 
+                the pre-trained COCO model using the train set. The training 
+                parameters used are the same as that provided in this <a href = "https://www.kaggle.com/maartenvandevelde/object-detection-with-detectron2-pytorch">
+                demo</a>. The
+                model is then
+                evaluated on the test set.
+              </p>
+
+              <p class="table-title"><strong>Training Parameters</strong></p>
+              <ul>
+                <li>cfg.SOLVER.IMS_PER_BATCH = 2</li>
+                <li>cfg.SOLVER.BASE_LR = 0.00025</li>
+                <li>cfg.SOLVER.MAX_ITER = 300</li>
+                <li>cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 128</li>
+                <li>cfg.MODEL.ROI_HEADS.NUM_CLASSES = 1</li>
+              </ul>
+
+              <p class="table-title"><strong>Metrics for Bounding Box</strong></p>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">AP50</th>
+                    <th scope="col">AP75</th>
+                    <th scope="col">APs</th>
+                    <th scope="col">APm</th>
+                    <th scope="col">APl</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>65.014</td>
+                    <td>84.353</td>
+                    <td>79.896</td>
+                    <td>9.398</td>
+                    <td>54.380</td>
+                    <td>77.943</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="table-title"><strong>Metrics for Segmentation Mask</strong></p>
+
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">AP50</th>
+                    <th scope="col">AP75</th>
+                    <th scope="col">APs</th>
+                    <th scope="col">APm</th>
+                    <th scope="col">APl</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>75.856</td>
+                    <td>83.622</td>
+                    <td>83.365</td>
+                    <td>7.249</td>
+                    <td>57.591</td>
+                    <td>92.700</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <figure>
+                <img src="./images/balloon_inference.png" alt="balloon" title="Balloon" /></p>
+                <figcaption>
+                  <p><em>Figure 4e. Inference with fine-tuned model on Balloon test set</em></p>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li>
+              <h6 id="micro-controller"> Micro-Controller Mode (fine-tuned)</h6>
+              <p>Dataset: Micro-Controller Segmentation Data (<a
+                  href="https://github.com/TannerGilbert/Detectron2-Train-a-Instance-Segmentation-Model">Tanner</a>)</p>
+              <p> A small dataset containing annotations for instances of Arduino, Raspberry Pi, Lora, and ESP8266.</p>
+              <p>The Mask R-CNN model is obtained through fine-tuning (<a href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Micro_Controller.ipynb">Code</a>)
+                the pre-trained COCO model using the train set. The training 
+                parameters used are the same as that provided in the demo, which is alongside the dataset. The model is then
+                evaluated on the test set.
+              </p>
+
+              <p class="table-title"><strong>Training Parameters</strong></p>
+
+              <ul>
+                <li>cfg.SOLVER.IMS_PER_BATCH = 2</li>
+                <li>cfg.SOLVER.BASE_LR = 0.00025</li>
+                <li>cfg.SOLVER.MAX_ITER = 1000</li>
+                <li>cfg.MODEL.ROI_HEADS.NUM_CLASSES = 4</li>
+              </ul>
+              <p class="table-title"><strong>Metrics for Bounding Box</strong></p>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">AP50</th>
+                    <th scope="col">AP75</th>
+                    <th scope="col">APs</th>
+                    <th scope="col">APm</th>
+                    <th scope="col">APl</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>76.320</td>
+                    <td>91.749</td>
+                    <td>91.749</td>
+                    <td>nan</td>
+                    <td>90.000</td>
+                    <td>80.033</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p class="table-title"><strong>Metrics for Segmentation Mask</strong></p>
+
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">AP50</th>
+                    <th scope="col">AP75</th>
+                    <th scope="col">APs</th>
+                    <th scope="col">APm</th>
+                    <th scope="col">APl</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>88.020</td>
+                    <td>91.749</td>
+                    <td>91.749</td>
+                    <td>nan</td>
+                    <td>90.000</td>
+                    <td>96.894</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <figure>
+                <img src="./images/micro_controller_img.png" alt="Micro-con" title="Micro-Contoller" /></p>
+                <figcaption>
+                  <p><em>Figure 4f. Inference with fine-tuned model on Micro-Controller test set</em></p>
+                </figcaption>
+              </figure>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <h2 id="demo">The Demo of the App</h2>
+          <hr>
+          <p>TODO</p>
+        </div>
+        <div>
+          <h2 id="challenges">Challenges We Faced and Solved</h2>
+          <hr>
+          <ul>
+            <li>
+              <h5 id="refactoring">Redirecting our project</h5>
+
+              <p>We had to rapidly change the direction of our project after receiving feedback for our initial proposal.
+                Our original plan involved implementing the Mask R-CNN as in the original paper and replicating the
+                results on
+                the COCO Dataset and then implementing the model on autonomous vehicle datasets such as the Cityscapes
+                Dataset and the Indian Driving Dataset. We also intended to spend time on enhancing model performance by
+                making modifications such as tweaking the model architecture
+                (e.g., the R-CNN backbones), and exploring different training techniques (e.g., multi-scale train/test,
+                horizontal flip test).
+                We realized that this plan was impractical given the time and computer resources available. We decided to
+                change the direction and emphasis of our project
+                to deliver an end result that is both tangible and achievable.
+              </p>
+            </li>
+            <li>
+              <h5 id="platfom">Platform Independence of App</h5>
+              <p>We initially planned to develop an app that users can install and run locally. However, the core engine
+                package of instance segmentation, Detectron2, is natively supported only on Linux and Mac OS. We spent a
+                lot of time exploring workarounds to have it work on Windows OS but in vein. Therefore, we managed to host
+                the app online with the Amazon Web Services so that users with any OS can use the app.</p>
+            </li>
+            <li>
+              <h5 id="computational resources">Computational Resources</h5>
+              <p>Initially, we decided to train all the models ourselves with large dataset. However, that turned out to
+                be impractical due to the computational resources we had (detailed below). Therefore, for larger datasets
+                (i.e., the generic, marine, and city modes), we decided to use pre-trained models, and we only fine-tuned
+                the
+                models on smaller dataset (i.e., the nature, balloon, and micro-controller modes). </p>
+              <ol>
+                <li>To use Google Coloboratory, the dataset must be uploaded to Google drive in order for Colab to read
+                  it. This was a significant bottleneck because uploading
+                  large datasets onto Google drive is slow - with the bandwidth of 100Mbps download speed and 40Mbps
+                  upload speed, uploading 1GB of files to Google drive took us
+                  5 hours. Although we were able to find an existing COCO dataset on a publicly accessible Google
+                  drive, other datasets we were considering (e.g., Open Images Dataset, Indian Driving Dataset) were not
+                  publicly available on Google drive.</li>
+                <li>
+                  The second problem was related to the limitation of the Colab environment. Even when we were able to
+                  mount the public Google drive that contains the COCO dataset,
+                  Colab crashed upon loading the large-scale dataset (2017 COCO training set is of size 19GB). After days
+                  of research and trial and error, we
+                  eventually managed a workaround using symbolic links, which ensures that Colab wouldn’t crash due to
+                  being inundated by many images. This, however, requires the
+                  dataset to be present on the Google drive ina specific format. we were only able to configure the 2017
+                  COCO dataset into such formats, but not for other datasets.
+                </li>
+                <li>Colab was under-powered to train the Mask R-CNN model from scratch with such a large dataset. The free
+                  version of Colab only provides 12.8 GB of RAM, one
+                  single GPU (with 11.4MB of memory), and each session only allows 12 hours of training. More annoyingly,
+                  if the browser gets idle,
+                  the Colab session would be terminated automatically, which means the the client computer can’t be turned
+                  off or used for other purposes
+                  while training. The authors of [1] said that it took them 32 hours to train the Mask R-CNN model from
+                  scratch with COCO dataset using a 8-GPU machine.
+                  With an single-GPU machine, the 12-hour session limit, and
+                  the termination mechanism, we deemed Colab not appropriate for such kind of heavy training task. </li>
+              </ol>
+
+            </li>
+            <li>
+              <h5 id="datasets">Availability of instance segmentation datasets</h5>
+              <p>There were not a lot of instance segmentation datasets to choose from while fine-tuning because we had to
+                constrain the size of the dataset to account for
+                the limited computational resources.
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 id="Documents">Documents</h2>
+          <ul>
+            <li><a href="./Documents/CS_766_Proposal.pdf" target='_blank'>Project Proposal</a></li>
+            <li><a href="./Documents/CS766_Midterm_Report.pdf" target='_blank'>Midterm Report</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 id="reference">Reference</h2>
+          <p>[1] Kaiming He, Georgia Gkioxari, Piotr Dollar, and Ross Girshick. Mask r-cnn. In Proceedings of the
+            IEEEInternational Conference on Computer Vision, pages 2961–2969, 2017.</p>
+          <p>[2] Yuxin Wu and Alexander Kirillov and Francisco Massa and Wan-Yen Lo and Ross Girshick. Detectron2.
+            https://github.com/facebookresearch/detectron2. 2019 </p>
+          <p>[3] Hong, Jungseok; Fulton, Michael S; Sattar, Junaed. TrashCan 1.0 An Instance-Segmentation Labeled Dataset
+            of Trash Observations.
+            Retrieved from the Data Repository for the University of Minnesota, https://doi.org/10.13020/g1gx-y834. 2020
+          </p>
+          <p> [4] Marius Cordts, Mohamed Omran, Sebastian Ramos, Timo Rehfeld, Markus Enzweiler, Rodrigo Benen-son,
+            Uwe Franke, Stefan Roth, and Bernt Schiele. The cityscapes dataset for semantic urban scene understanding,
+            2016.</p>
+          <p>[5] Agrim Gupta, Piotr Dollar, and Ross Girshick. A Dataset for Large Vocabulary Instance Segmentation.
+            Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition. 2019 </p>
+          <p>[6] Waleed Abdulla. Mask R-CNN for object detection and instance segmentation on Keras and TensorFlow.
+            https://github.com/matterport/Mask_RCNN. 2017.
+          </p>
+          <p>[7] G. Varma, A. Subramanian, A. Namboodiri, M. Chandraker, and C. V. Jawahar. IDD: A Dataset for
+            Exploring Problems of Autonomous Navigation in Unconstrained Environments.
+            In 2019 IEEE WinterConference on Applications of Computer Vision (WACV), pages 1743–1751, 7</p>
+          <p>[8] Tsung-Yi Lin, Michael Maire, Serge Belongie, James Hays, Pietro Perona, Deva Ramanan, Piotr Doll ́ar,and
+            C Lawrence Zitnick.
+            Microsoft coco: Common objects in context. In European Conference onComputer Vision, pages 740–755. Springer,
+            2014.</p>  
+        </div>
       </article>
     </main>
   </div>
 
   <footer class="main-footer">
-    <div class="container clearfix">
-      <p>Created by Varun Sreenivasan, Yun-Shiuan Chuang, Jacob Lorenz</p>
-    </div>
+    <p>Created by Varun Sreenivasan, Yun-Shiuan Chuang, Jacob Lorenz</p>
   </footer>
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
