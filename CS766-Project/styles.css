@@ -101,6 +101,7 @@ hr {
 
 .content {
   margin-left: 3rem;
+  max-width: 1250px;
 }
 
 .site-header {
