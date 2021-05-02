@@ -100,8 +100,8 @@ hr {
 }
 
 .content {
-  margin-left: 3rem;
-  max-width: 1250px;
+  margin-left: 10rem;
+  max-width: 900px !important;
 }
 
 .site-header {
