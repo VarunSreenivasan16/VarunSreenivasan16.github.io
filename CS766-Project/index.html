@@ -388,8 +388,8 @@
                   2020</a>)</p>
               <p>This is a dataset containing around 800 images of squirrels and butterfiles.</p>
               <p>The Mask R-CNN model is obtained through fine-tuning (<a href = "https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Nature.ipynb">Code</a>)
-                the pre-trained COCO model using the train set. The training 
-                parameters used are the same as that provided in the demo, which is alongside the dataset. The
+                the pre-trained COCO model using the train set.  We chose the training 
+                parameters based on the demo, which is alongside the dataset. The
                 model is then
                 evaluated on the test set.
               </p>
@@ -398,10 +398,9 @@
               <p class="table-title"><strong>Training Parameters</strong></p>
 
               <ul>
-                <li>cfg.SOLVER.IMS_PER_BATCH = 2</li>
-                <li>cfg.SOLVER.BASE_LR = 0.00025</li>
-                <li>cfg.SOLVER.MAX_ITER = 1000</li>
-                <li>cfg.MODEL.ROI_HEADS.NUM_CLASSES = 2</li>
+                <li>images per batch = 2</li>
+                <li>initial learning rate = 0.00025</li>
+                <li>number of iterations = 1000</li>
               </ul>
 
               <p class="table-title"><strong>Metrics for Bounding Box</strong></p>
@@ -466,8 +465,8 @@
                   2018</a>)</p>
               <p>This is a small dataset provided by Matterport containing balloon instances.</p>
               <p>The Mask R-CNN model is obtained through fine-tuning (<a href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Balloon.ipynb">Code</a>) 
-                the pre-trained COCO model using the train set. The training 
-                parameters used are the same as that provided in this <a href = "https://www.kaggle.com/maartenvandevelde/object-detection-with-detectron2-pytorch">
+                the pre-trained COCO model using the train set. We chose the training 
+                parameters based on this <a href = "https://www.kaggle.com/maartenvandevelde/object-detection-with-detectron2-pytorch">
                 demo</a>. The
                 model is then
                 evaluated on the test set.
@@ -475,11 +474,9 @@
 
               <p class="table-title"><strong>Training Parameters</strong></p>
               <ul>
-                <li>cfg.SOLVER.IMS_PER_BATCH = 2</li>
-                <li>cfg.SOLVER.BASE_LR = 0.00025</li>
-                <li>cfg.SOLVER.MAX_ITER = 300</li>
-                <li>cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 128</li>
-                <li>cfg.MODEL.ROI_HEADS.NUM_CLASSES = 1</li>
+                <li>images per batch = 2</li>
+                <li>initial learning rate = 0.00025</li>
+                <li>number of iterations = 300</li>
               </ul>
 
               <p class="table-title"><strong>Metrics for Bounding Box</strong></p>
@@ -545,18 +542,17 @@
                   href="https://github.com/TannerGilbert/Detectron2-Train-a-Instance-Segmentation-Model">Tanner</a>)</p>
               <p> A small dataset containing annotations for instances of Arduino, Raspberry Pi, Lora, and ESP8266.</p>
               <p>The Mask R-CNN model is obtained through fine-tuning (<a href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Micro_Controller.ipynb">Code</a>)
-                the pre-trained COCO model using the train set. The training 
-                parameters used are the same as that provided in the demo, which is alongside the dataset. The model is then
+                the pre-trained COCO model using the train set.  We chose the training 
+                parameters based on the demo that is alongside the dataset. The model is then
                 evaluated on the test set.
               </p>
 
               <p class="table-title"><strong>Training Parameters</strong></p>
 
               <ul>
-                <li>cfg.SOLVER.IMS_PER_BATCH = 2</li>
-                <li>cfg.SOLVER.BASE_LR = 0.00025</li>
-                <li>cfg.SOLVER.MAX_ITER = 1000</li>
-                <li>cfg.MODEL.ROI_HEADS.NUM_CLASSES = 4</li>
+                <li>images per batch = 2</li>
+                <li>initial learning rate = 0.00025</li>
+                <li>number of iterations = 1000</li>
               </ul>
               <p class="table-title"><strong>Metrics for Bounding Box</strong></p>
               <table class="table table-bordered">
