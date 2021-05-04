@@ -172,7 +172,7 @@
         <div>
           <h2 id="implementation">Implementation Details</h2>
           <hr>
-          <h4 id="instance segmentation">Packages and Envoronment</h4>
+          <h4 id="instance segmentation">Packages and the Envoronment</h4>
           <p>We implemented the Mask-RCNN model using the python package <i>Detectron2</i> (<a
               href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>), developed by Facebook AI
             Research (FAIR). As for GrubCut, we based our app on the python package <i>opencv-python</i> (<a
@@ -615,6 +615,13 @@
           <h2 id="demo">The Demo of the App</h2>
           <hr>
           <p>TODO</p>
+          <h4>GrabCut: Refine the segmentation mask</h4>
+          <p>As shown in Figure 6, Mask R-CNN first infer the segmentation mask for the bus. This predicted mask is not perfect, e.g., it misses the mirror and falsely include the parts of the car in front of it. The user then provides some hints - the white strokes highlight the parts that are surely the instance, and the black the parts surely the background. After GrabCut, the segmentation mask is improved.</p>
+          <p>
+            <img src="./images/grabcut-demo.jpg" alt="GrabCut demo" title="GrabCut demo" /></p>
+          <figcaption>
+            <p><em>Figure 6. Demo of the app's GracCut function. </em></p>
+          </figcaption>          
         </div>
         <div>
           <h2 id="challenges">Challenges We Faced and Solved</h2>
@@ -679,7 +686,6 @@
                   With an single-GPU machine, the 12-hour session limit, and
                   the termination mechanism, we deemed Colab not appropriate for such kind of heavy training task. </li>
               </ol>
-
             </li>
             <li>
               <h5 id="datasets">Availability of instance segmentation datasets</h5>
