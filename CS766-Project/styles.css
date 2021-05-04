@@ -79,7 +79,9 @@ hr {
   border-top: 1px #E4E4E4 solid;
   margin: 40px 0;
 }
-
+#div-reference{
+  font-size: 16px;
+}
 .post ul li {
   line-height: 28px;
   font-size: 15px;

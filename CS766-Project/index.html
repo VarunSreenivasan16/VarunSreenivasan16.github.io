@@ -143,9 +143,11 @@
 
           <p>AP for Objects with Different Sizes</p>
           <ul>
-            <li>AP<sup>small</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% AP for small objects -  object area &lt;
+            <li>AP<sup>small</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% AP for small objects - object area
+              &lt;
               32<sup>2</sup> pixels</li>
-            <li>AP<sup>medium</sup>&nbsp;&nbsp;&nbsp;&nbsp;% AP for medium objects - 32 <sup>2</sup> pixels &lt; object area &lt;
+            <li>AP<sup>medium</sup>&nbsp;&nbsp;&nbsp;&nbsp;% AP for medium objects - 32 <sup>2</sup> pixels &lt; object
+              area &lt;
               96<sup>2</sup> pixels</li>
             <li>AP<sup>large</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% AP for large objects - area &gt;
               96<sup>2</sup> pixels</li>
@@ -157,15 +159,21 @@
               AP is averaged across all categories within a dataset.
             </li>
             <li>
-              The definition of intersection over union (IoU): For the segmentation mask, IoU is defined as the overlap between the predicted mask and the ground-truth mask over the union of the the predicted mask and the ground-truth mask (both measures in terms of the number of pixels). For the bounding box, IoU is defined as the overlap between the predicted box and the ground-truth box over the union of the the predicted box and the ground-truth box (both measured in terms of the area).
+              The definition of intersection over union (IoU): For the segmentation mask, IoU is defined as the overlap
+              between the predicted mask and the ground-truth mask over the union of the the predicted mask and the
+              ground-truth mask (both measures in terms of the number of pixels). For the bounding box, IoU is defined
+              as the overlap between the predicted box and the ground-truth box over the union of the the predicted box
+              and the ground-truth box (both measured in terms of the area).
             </li>
             <li>
-              <p>The evaluation metrics for the prediction of the bounding box and the segmentation mask are identical in all
+              <p>The evaluation metrics for the prediction of the bounding box and the segmentation mask are identical
+                in all
                 respects except the IoU computation.</p>
             </li>
           </ul>
 
-          <p>For more details about the performance metrics, please see the description (<a href="https://cocodataset.org/#detection-eval">here</a>).</p>
+          <p>For more details about the performance metrics, please see the description (<a
+              href="https://cocodataset.org/#detection-eval">here</a>).</p>
 
           <h5 id="GrabCut">GrabCut</h5>
           <p>
@@ -435,7 +443,8 @@
                   2020</a>)</p>
               <p>This is a dataset containing around 800 images of squirrels and butterfiles.</p>
               <p>The Mask R-CNN model is obtained through fine-tuning (<a
-                  href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Nature.ipynb">our fine-tuning code</a>)
+                  href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Nature.ipynb">our
+                  fine-tuning code</a>)
                 the pre-trained COCO model using the train set. We chose the training
                 parameters based on the demo, which is alongside the dataset. The
                 model is then
@@ -514,7 +523,8 @@
                   2018</a>)</p>
               <p>This is a small dataset provided by Matterport containing balloon instances.</p>
               <p>The Mask R-CNN model is obtained through fine-tuning (<a
-                  href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Balloon.ipynb">our fine-tuning code</a>)
+                  href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Balloon.ipynb">our
+                  fine-tuning code</a>)
                 the pre-trained COCO model using the train set. We chose the training
                 parameters based on this <a
                   href="https://www.kaggle.com/maartenvandevelde/object-detection-with-detectron2-pytorch">
@@ -593,7 +603,8 @@
                   href="https://github.com/TannerGilbert/Detectron2-Train-a-Instance-Segmentation-Model">Tanner</a>)</p>
               <p> A small dataset containing annotations for instances of Arduino, Raspberry Pi, Lora, and ESP8266.</p>
               <p>The Mask R-CNN model is obtained through fine-tuning (<a
-                  href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Micro_Controller.ipynb">our fine-tuning code</a>)
+                  href="https://github.com/VarunSreenivasan16/CS766-Project/blob/main/Detectron2-Fine-Tuning/Micro_Controller.ipynb">our
+                  fine-tuning code</a>)
                 the pre-trained COCO model using the train set. We chose the training
                 parameters based on the demo that is alongside the dataset. The model is then
                 evaluated on the test set.
@@ -670,8 +681,7 @@
           <h4>Please use the app via this link TODO</h4>
           <p>TODO</p>
           <h4>Run inference: Tutorial</h4>
-          <p><iframe width="840" height="630"
-            src="https://www.youtube.com/embed/FSX3I_v9R_g?controls=1">
+          <p><iframe width="840" height="630" src="https://www.youtube.com/embed/FSX3I_v9R_g?controls=1">
             </iframe></p>
           <h4>GrabCut: Refine the segmentation mask</h4>
           <p>As shown in Figure 6, Mask R-CNN first infer the segmentation mask for the bus. This predicted mask is not
@@ -775,33 +785,36 @@
           </ul>
         </div>
         <div>
-          <h2 id="reference">Reference</h2>
-          <p>[1] Kaiming He, Georgia Gkioxari, Piotr Dollar, and Ross Girshick. Mask r-cnn. In Proceedings of the
-            IEEEInternational Conference on Computer Vision, pages 2961–2969, 2017.</p>
-          <p>[2] Yuxin Wu and Alexander Kirillov and Francisco Massa and Wan-Yen Lo and Ross Girshick. Detectron2.
-            https://github.com/facebookresearch/detectron2. 2019 </p>
-          <p>[3] Hong, Jungseok; Fulton, Michael S; Sattar, Junaed. TrashCan 1.0 An Instance-Segmentation Labeled
-            Dataset
-            of Trash Observations.
-            Retrieved from the Data Repository for the University of Minnesota, https://doi.org/10.13020/g1gx-y834. 2020
-          </p>
-          <p> [4] Marius Cordts, Mohamed Omran, Sebastian Ramos, Timo Rehfeld, Markus Enzweiler, Rodrigo Benen-son,
-            Uwe Franke, Stefan Roth, and Bernt Schiele. The cityscapes dataset for semantic urban scene understanding,
-            2016.</p>
-          <p>[5] Agrim Gupta, Piotr Dollar, and Ross Girshick. A Dataset for Large Vocabulary Instance Segmentation.
-            Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition. 2019 </p>
-          <p>[6] Waleed Abdulla. Mask R-CNN for object detection and instance segmentation on Keras and TensorFlow.
-            https://github.com/matterport/Mask_RCNN. 2017.
-          </p>
-          <p>[7] G. Varma, A. Subramanian, A. Namboodiri, M. Chandraker, and C. V. Jawahar. IDD: A Dataset for
-            Exploring Problems of Autonomous Navigation in Unconstrained Environments.
-            In 2019 IEEE WinterConference on Applications of Computer Vision (WACV), pages 1743–1751, 7</p>
-          <p>[8] Tsung-Yi Lin, Michael Maire, Serge Belongie, James Hays, Pietro Perona, Deva Ramanan, Piotr Doll
-            ́ar,and
-            C Lawrence Zitnick.
-            Microsoft coco: Common objects in context. In European Conference onComputer Vision, pages 740–755.
-            Springer,
-            2014.</p>
+          <h2 id="reference">References</h2>
+          <div id="div-reference">
+            <p>[1] Kaiming He, Georgia Gkioxari, Piotr Dollar, and Ross Girshick. Mask r-cnn. In Proceedings of the
+              IEEEInternational Conference on Computer Vision, pages 2961–2969, 2017.</p>
+            <p>[2] Yuxin Wu and Alexander Kirillov and Francisco Massa and Wan-Yen Lo and Ross Girshick. Detectron2.
+              https://github.com/facebookresearch/detectron2. 2019 </p>
+            <p>[3] Hong, Jungseok; Fulton, Michael S; Sattar, Junaed. TrashCan 1.0 An Instance-Segmentation Labeled
+              Dataset
+              of Trash Observations.
+              Retrieved from the Data Repository for the University of Minnesota, https://doi.org/10.13020/g1gx-y834.
+              2020
+            </p>
+            <p> [4] Marius Cordts, Mohamed Omran, Sebastian Ramos, Timo Rehfeld, Markus Enzweiler, Rodrigo Benen-son,
+              Uwe Franke, Stefan Roth, and Bernt Schiele. The cityscapes dataset for semantic urban scene understanding,
+              2016.</p>
+            <p>[5] Agrim Gupta, Piotr Dollar, and Ross Girshick. A Dataset for Large Vocabulary Instance Segmentation.
+              Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition. 2019 </p>
+            <p>[6] Waleed Abdulla. Mask R-CNN for object detection and instance segmentation on Keras and TensorFlow.
+              https://github.com/matterport/Mask_RCNN. 2017.
+            </p>
+            <p>[7] G. Varma, A. Subramanian, A. Namboodiri, M. Chandraker, and C. V. Jawahar. IDD: A Dataset for
+              Exploring Problems of Autonomous Navigation in Unconstrained Environments.
+              In 2019 IEEE WinterConference on Applications of Computer Vision (WACV), pages 1743–1751, 7</p>
+            <p>[8] Tsung-Yi Lin, Michael Maire, Serge Belongie, James Hays, Pietro Perona, Deva Ramanan, Piotr Doll
+              ́ar,and
+              C Lawrence Zitnick.
+              Microsoft coco: Common objects in context. In European Conference onComputer Vision, pages 740–755.
+              Springer,
+              2014.</p>
+          </div>
         </div>
       </article>
     </main>
