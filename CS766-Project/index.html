@@ -61,7 +61,7 @@
             involved with autonomous vehicles. For instance, if we solely use object detection in the autonomous vehicles,
             there is a chance that the bounding boxes of multiple cars may overlap and this will confuse the self-driving
             vehicle. Instance segmentation helps overcome this flaw. The ability to detect the spatial boundaries of
-            objects down to pixel level detail instead of broadly sensing their location could mean the difference between
+            objects down to pixel-level details instead of broadly sensing their location could mean the difference between
             the vehicle safely navigating its way through and the vehicle striking other cars or objects. In a world of
             high
             velocity traffic and unpredictability, the smallest details can have some of the most serious consequences.
@@ -277,7 +277,7 @@
               <figure>
                 <img src="./images/lvis.png" alt="generic" title="Generic" /></p>
                 <figcaption>
-                  <p><em>Figure 4a. Inference with pre-trained LVIS model on custom image</em></p>
+                  <p><em>Figure 5a. Inference with pre-trained LVIS model on custom image</em></p>
                 </figcaption>
               </figure>
             </li>
@@ -287,8 +287,7 @@
               <p>A dataset comprising of 7212 images with observations of marine animals, trash, ROVs and multiple other
                 forms of underwater flora and fauna.
                 We used the instance version of the dataset that contains 22 different classes of objects. </p>
-              <p>The pre-trained model available alongside the dataset is used for this mode. (Note: bounding box metrics
-                in the paper are for a Faster R-CNN model.)</p>
+              <p>The pre-trained model available alongside the dataset is used for this mode.</p>
 
                 <p class="table-title"><strong>Metrics for Bounding Box</strong></p>
                 <table class="table table-bordered">
@@ -341,7 +340,7 @@
               <figure>
                 <img src="./images/trash_can_img.png" alt="balloon" title="trash-can" /></p>
                 <figcaption>
-                  <p><em>Figure 4b. Inference with fine-tuned model on TrashCan test set</em></p>
+                  <p><em>Figure 5b. Inference with fine-tuned model on TrashCan test set</em></p>
                 </figcaption>
               </figure>
             </li>
@@ -352,8 +351,8 @@
               <p>A large-scale dataset comprising of a diverse set of image frames of street scenes from 50 different
                 cities. There are 5000 images with fine annotations and 20000 with coarse annotations.
               </p>
-              <p>The pre-trained CityScapes model provided by Detectron2 is used. (Note: bounding box metrics aren't
-                provided. Only Segm/AP and Segm/AP50 are provided. )</p>
+              <p>The pre-trained CityScapes model provided by Detectron2 is used. (Note: The metrics for the bounding box prediction of the pretrained model aren't
+                provided. Only the metrics for the segmentation mask are provided. )</p>
 
               <p class="table-title"><strong>Metrics for Segmentation Mask</strong></p>
 
@@ -376,7 +375,7 @@
               <figure>
                 <img src="./images/cityscape.png" alt="city" title="City" /></p>
                 <figcaption>
-                  <p><em>Figure 4c. Inference with pre-trained Cityscape model on custom city image</em></p>
+                  <p><em>Figure 5c. Inference with pre-trained Cityscape model on custom city image</em></p>
                 </figcaption>
               </figure>
             </li>
@@ -454,7 +453,7 @@
               <figure>
                 <img src="./images/butterfly.png" alt="butterfly" title="Butterfly" /></p>
                 <figcaption>
-                  <p><em>Figure 4d. Inference with fine-tuned model on Nature test set</em></p>
+                  <p><em>Figure 5d. Inference with fine-tuned model on Nature test set</em></p>
                 </figcaption>
               </figure>
             </li>
@@ -531,7 +530,7 @@
               <figure>
                 <img src="./images/balloon_inference.png" alt="balloon" title="Balloon" /></p>
                 <figcaption>
-                  <p><em>Figure 4e. Inference with fine-tuned model on Balloon test set</em></p>
+                  <p><em>Figure 5e. Inference with fine-tuned model on Balloon test set</em></p>
                 </figcaption>
               </figure>
             </li>
@@ -606,7 +605,7 @@
               <figure>
                 <img src="./images/micro_controller_img.png" alt="Micro-con" title="Micro-Contoller" /></p>
                 <figcaption>
-                  <p><em>Figure 4f. Inference with fine-tuned model on Micro-Controller test set</em></p>
+                  <p><em>Figure 5f. Inference with fine-tuned model on Micro-Controller test set</em></p>
                 </figcaption>
               </figure>
             </li>
