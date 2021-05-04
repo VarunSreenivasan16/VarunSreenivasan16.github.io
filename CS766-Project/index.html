@@ -124,6 +124,33 @@
               segmentation. (Image source: <a href="https://arxiv.org/pdf/1703.06870.pdf">He et al., 2017</a>)</em></p>
           </figcaption>
   
+          <h5 id="metrics">Metrics </h5>
+          <p>Average Precision (AP):</p>
+          <ul>
+            <li>AP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% AP at IoU=.50:.05:.95 (primary challenge metric)</li>
+            <li>AP<sup>IOU=0.50</sup>&nbsp;&nbsp;&nbsp;&nbsp;% AP at IoU=.50 (PASCAL VOC metric) </li>
+            <li>AP<sup>IOU=0.75</sup>&nbsp;&nbsp;&nbsp;&nbsp;% AP at IoU=.75 (strict metric)</li>
+          
+          </ul>
+
+          <p>AP Across Scales (Note - Area is measured as the number of pixels in the segmentation mask):</p>
+          <ul>
+            <li>AP<sup>small</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% AP for small objects: area &lt; 32<sup>2</sup></li>
+            <li>AP<sup>medium</sup>&nbsp;&nbsp;&nbsp;&nbsp;% AP for medium objects: 32 <sup>2</sup> &lt; area &lt; 96<sup>2</sup></li>
+            <li>AP<sup>large</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;% AP for large objects: area &gt; 96<sup>2</sup></li>
+          </ul>
+
+         
+          <ol style="margin-left: -25px;"> 
+            <li><p>AP is averaged over multiple Intersection over Union (IoU) values. We use 10 IoU thresholds of .50:.05:.95. 
+              Averaging over IoUs rewards detectors that have better localization.</p></li>
+            <li><p>AP is averaged over all categories. We don't differentiate between AP and mAP.</p></li>
+            <li><p>Area is measured as the number of pixels in the segmentation mask.</p></li>
+            <li><p>The evaluation metrics for detection with bounding boxes and segmentation masks are identical in all respects except for the IoU computation.</p></li>
+          
+            </ol>
+
+            <p>Detailed info available (<a href = "https://cocodataset.org/#detection-eval">here</a>)</p>
           <h5 id="GrabCut">GrabCut</h5>
           <p>
             To allow the users to iteratively refine the binary mask for a segmented instance, we used the GrabCut
