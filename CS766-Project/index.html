@@ -230,8 +230,9 @@
               href="https://github.com/facebookresearch/detectron2">Wu et al., 2019</a>), developed by Facebook AI
             Research (FAIR). As for GrubCut, we based our app on the python package <i>opencv-python</i> (<a
               href="https://github.com/opencv/opencv-python">Bradski, 2000</a>).</p>
-          <p>To ensure the app can run smoothly with minimal effort from the users, we hosted the app online with Amazon
-            Web Services. The users can simply access the website with any browser to use the app.</p>
+          <p>Although we wanted to host this app publicly on Amazon Web Services, we could not afford the cost of hosting. So instead, we have included instructions
+            on how to run the app locally in the Github Repo (https://github.com/VarunSreenivasan16/CS766-Project), and we will be looking for more cost-effective ways to host the app publicly.
+          </p>
           <h4>Mask-RCNN: Domain-General and Domain-specific Modes</h4>
           <p>To allow the users to annotate the images in different domains, we have included six instance segmentation
             modes. There is one domain-general mode and five domain-specific modes. The details of the each of the mode
@@ -676,15 +677,27 @@
           </ol>
         </div>
         <div>
-          <h2 id="demo">The Demo of the App</h2>
+          <h2 id="demo">Web-App & Demo</h2>
           <hr>
           <h4>Please access the repo containing the code and instructions for use at our <a href="https://github.com/VarunSreenivasan16/CS766-Project" style="color:blue;border-bottom:1px solid blue;">Github Repo</a>.</h4>
-          <p>TODO</p>
-          <h4>Run inference: Tutorial</h4>
+          <p>
+            One of the main deliverables for our project is an interactive web application that can be used to perform instance segmentation on an user's personal images. The github repository containing this code is linked above.
+            The app runs inside of a docker container to make dependency management easier, and is built using a python-flash backend with a DHTML frontend including HTML, CSS, JS, and libraries such as jQuery and Bootstrap. We are searching
+            for cost-effective ways to host this app publicly. 
+          </br>
+            At the moment, the user can use the app to perform instance segmentation on their personal images using one of our six available modes. The user is able to save their image after processing and will receive visual feedback. If the user is more
+            interested in processing a large quantity of images versus one at a time, we also offer Batch processing functionlity so that they can upload a directory of images, have them all processed, and have a zip file downloaded with their processed images 
+            once complete. 
+          </br>
+            There are a few features currently in progress that were not 100% completed. Grabcut functionality in the app is one such feature, where if the user is not satisfied with the identification of an object of importance, they can use Grabcut to give hints on the objects they are interested
+            in and the model will focus on that particular object. The controls for user interaction are implemented in the app; however, the backend processing is still incomplete and so processing is currently disabled. Another piece of functionality we are working on to offer is to allow
+            the user to upload their own custom dataset and train a model on specific object types for nuanced inference. This should allow infinite customizeability for the purpose of single image instance segmentation.
+          </p>
+          <h4>Instance Segmentation Demo:</h4>
           <!-- <p><iframe width="840" height="630" src="https://www.youtube.com/embed/FSX3I_v9R_g?controls=1"> -->
             <!-- </iframe></p>  -->
           <h4>GrabCut: Refine the segmentation mask</h4>
-          <p>As shown in Figure 6, Mask R-CNN first infer the segmentation mask for the bus. This predicted mask is not
+          <p>As shown in Figure 6, Mask R-CNN first infers the segmentation mask for the bus. This predicted mask is not
             perfect, e.g., it misses the mirror and falsely include the parts of the car in front of it. The user then
             provides some hints - the white strokes highlight the parts that are surely the instance, and the black the
             parts surely the background. After GrabCut, the segmentation mask is improved.</p>
@@ -720,9 +733,13 @@
               <h5 id="platfom">Platform Independence of App</h5>
               <p>We initially planned to develop an app that users can install and run locally. However, the core engine
                 package of instance segmentation, Detectron2, is natively supported only on Linux and Mac OS. We spent a
-                lot of time exploring workarounds to have it work on Windows OS but in vein. Therefore, we managed to
-                host
-                the app online with the Amazon Web Services so that users with any OS can use the app.</p>
+                lot of time exploring workarounds to have it work on Windows OS but in vein. We then explored hosting the app publicly
+                with a service such as Amazon Web Services; however, we cannot financially afford the cost of the resources needed to continually host the app.
+                The solution we landed on is to have the user host the app locally, for the time being; however, everything is bundled into a docker container
+                so that the platform independence is addressed and dependency management is kept simple. All the user needs is to have
+                docker installed on their machine, and they will be able to build the image from the Dockerfile provided and installation instructions
+                in the README of the Web-App directory.
+              </p>
             </li>
             <li>
               <h5 id="computational resources">Computational Resources</h5>
