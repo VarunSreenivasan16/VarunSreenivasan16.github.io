@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<!--
+	-->
+<html>
+	<head>
+		<title>Internships</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Varun</strong> Sreenivasan</a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/varun-sreenivasan-11b41a186/" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer"><span class="label">Linkedin</span></a></li>		
+										<li><a href="https://github.com/VarunSreenivasan16" class="icon brands fa-github" target="_blank" rel="noopener noreferrer"><span class="label">Github</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+
+								<section>
+									<header class="major">
+										<h1>Internships</h1>
+									</header>
+									<div class="features">
+										
+										<article>
+											<a href = "https://www.nsf.gov/" target="_blank" rel="noopener noreferrer"><img src="images/nsf.png" width="200" height="150" alt="" /></a>
+											<div class="content">
+												<h3>NSF IRIS-HEP Fellowship, Berkeley, CA</h3>
+												<p> <I> May 2021 - August 2021</I><br /> <b> Topics:</b> Machine Learning</p>
+											</div>
+										</article>
+
+										<article>
+											<a href = "https://citrine.io/" target="_blank" rel="noopener noreferrer"><img src="images/citrine_informatics.png" width="200" height="150" alt="" /> </a>
+										   <div class="content">
+											   <h3>Citrine Informatics, Redwood City, CA</h3>
+											   <p> <I> May 2018 - August 2018</I><br /> <b> Topics:</b> Deep Learning<br /> </p>
+										   </div>
+									   </article>
+									</div>
+								</section>
+								<section>
+									<header class="major">
+										<h3>Institute for Research and Innovation in Software for High Energy Physics (IRIS-HEP), Berkeley, CA</h3></br>															</header>
+<i> Supervisor: <a href="https://crd.lbl.gov/departments/computational-science/phax/people/staff/daniel-murnane/" target="_blank" rel="noopener noreferrer">Daniel Murnane</a>, Postdoctoral Researcher, Lawrence Berkeley National Laboratory</i>
+<head>
+	<title>
+	</title>
+	<style>
+	.boxes{
+	width:50%;
+	float:left;
+	}
+	#mainDiv{
+		width:100%;
+margin:auto;
+	}
+	img{
+		max-width:100%;
+	}
+</style>
+</head>
+<body>
+<div id="mainDiv">
+    <div id="divOne" class="boxes">
+	<img src="images/hadron.jpg" width = "500" height = "300">
+    </div>
+    <div id="divTwo" class="boxes">
+	<img src="images/particle.jpg" width = "500" height = "300">
+    </div>
+</div>
+</body>
+									<p><b>Graph Methods for Particle Tracking</b></br></p><p> The High Luminosity - Large Hadron Collider is in need of efficient and fast particle track reconstruction as algorithms in use are
+										unable to scale to current requirements. This project explores Graph Neural Networks as a solution to this problem. </p>
+									<p>We used the TrackML Codalab dataset with 9000 events and 100,000 hits from 10,000 particles. The TrackML pipeline comprises of multiple stages
+										including processing, embedding, filtering, and GNN.
+									</p>
+									<p>In the Processing stage, feature engineering was performed to select cluster features to construct events from TrackML dataset.</p>
+									<p> 
+										The Embedding pipeline involving graph construction was developed to find a good distance metric between
+										pairs of 3D hit measurements wherein pairs belonging to same particles are nearby and further apart for different particles.
+										A significant speedup was achieved in the training stage by adapting the Nearest Neighbors algorithm to make use of Fixed Radius Nearest Neighbors (FRNN) on CUDA. Benchmarking 
+										was performed to establish the superiority of the FRNN library over competing solutions such as Facebook's Faiss and PyTorch3D KNN. The optimal PyTorch based embedding model with 99% efficiency and 1% purity was generated through hyperparameter scanning. 
+									</p>
+									
+<ul class="actions">
+											<li><a href="https://iris-hep.org/fellows.html" class="button big" target="_blank" rel="noopener noreferrer">Learn More</a></li>
+											<li><a href="documents/Graph-Methods-for-Particle-Tracking.pdf" class="button big" target="_blank" rel="noopener noreferrer">Presentation</a></li>
+											<li><a href="https://github.com/HSF-reco-and-software-triggers/Tracking-ML-Exa.TrkX" class="button big" target="_blank" rel="noopener noreferrer">TrackML Pipeline</a></li>
+										</ul> 
+<hr class="major" />
+<section>
+									<header class="major">
+										<h3>Citrine Informatics, Redwood City, CA </h3></br>															</header>
+<i> Supervisor: <a href="https://directory.engr.wisc.edu/mse/faculty/morgan_dane" target="_blank" rel="noopener noreferrer">Dane Morgan</a>, Professor, Dept. Material Science and Engineering</I>
+<head>
+	<title>
+	</title>
+	<style>
+	.boxes{
+	width:50%;
+	float:left;
+	}
+	#mainDiv{
+		width:100%;
+margin:auto;
+	}
+	img{
+		max-width:100%;
+	}
+</style>
+</head>
+<body>
+<div id="mainDiv">
+    <div id="divOne" class="boxes">
+	<img src="images/gt.png" width = "500" height = "400">
+    </div>
+    <div id="divTwo" class="boxes">
+	<img src="images/labelling.png" width = "500" height = "400">
+    </div>
+</div>
+</body>
+									<p><b>Deep Learning for Automated Defect Recognition in Electron Microscopy Images</b></br></p><p> Classifying defects in 
+										metallic microstructures is done widely in the metallographic industry to understand and assess the  quality and performance
+										 of metal alloys. In nuclear applications 
+										this process is critical to understand the effects of radiation and design for safe operation of nuclear reactors.</p><p> 
+											Defects are frequently identified through electron microscopy, and the image analysis is done by hand, which is slow, error prone and inconsistent.
+											Our project focused on automating this process using computer vision techniques based on convolution neural networks. 
+											The Univ. of WI team is exploring four implementations of networks, and this project is focused on one known as RetinaNet. </p>
+									<p>This project utlized the Keras implementation of RetinaNet. Hyperparameter optimization was performed to obtain the best model. 
+										An evaluation pipeline was developed to determine the recall and precision metrics. The detection model performed reasonably well with an average recall of 68% and average precision of 85% on the test set. 
+										Relatively low recall stems from inability to detect small defects.
+									</p>
+									
+									<p>I also co-authored a paper and presented the results at the NextGen Research Symposium in Golden, CO.</p>
+									<ul class="actions">
+											<li><a href="https://linkinghub.elsevier.com/retrieve/pii/S0927025621003037" class="button big" target="_blank" rel="noopener noreferrer">Published Paper</a></li>
+											<li><a href="./documents/UW_Poster.pdf" class="button big" target="_blank" rel="noopener noreferrer">Presentation</a></li>
+											<li><a href="https://matmodel.engr.wisc.edu/prof-dane-morgan-and-mingren-shen-proud-to-host-9-nextgen-scholars-in-summer-2018/" class="button big" target="_blank" rel="noopener noreferrer">Press Release</a></li>
+											
+										</ul> 
+									<hr class="major" />
+
+									
+								</section>
+
+						</div>
+					</div>
+	<!-- Sidebar -->
+	<div id="sidebar">
+		<div class="inner">
+
+			
+				<nav id="menu">
+					<header class="major">
+						<h2>Menu</h2>
+					</header>
+					<ul>
+						<li><a href="index.html">Homepage</a></li>
+						<li><a href="internship.html">Internships</a></li>
+						<li><a href="academic.html">Courses</a></li>
+
+					
+					</ul>
+				</nav>
+
+			<!-- Section -->
+<section>
+					<header class="major">
+						<h2>Technology Skills</h2>
+					</header>
+					<div class="mini-posts">
+						<ul style="list-style-type:disc;"> <a><b>
+Java | Python | C | C++ | CUDA | MATLAB | SQL | Scikit Learn | Pandas | Numpy | Tensorflow | PyTorch | Unix | Windows | Docker | AWS</b>
+</a>
+</ul>
+					</div>
+				</section>
+<section>
+					<header class="major">
+						<h2>Relevant Courses</h2>
+					</header>
+					<div class="mini-posts">
+						<ul style="list-style-type:disc;"> <a><b>
+Deep Learning | Machine Learning | Data Science | Artificial Intelligence | Mobile and Wireless Networks | Computer Networks 
+| Computer Vision | Operating Systems</b>
+</a>
+</ul>
+					</div>
+					
+				</section>
+
+				
+			<!-- Section -->
+				<section>
+					<header class="major">
+						<h2>Get in touch</h2>
+					</header>
+					<p></p>
+					<ul class="contact">
+						<li class="icon solid fa-envelope"> vsreenivasan@wisc.edu</li>
+						<li class="icon solid fa-phone">+1-(608) 422-2785</li>
+					</ul>
+				</section>
+				<footer id="footer">
+					<p class="copyright">&copy; All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+				</footer>
+		
+</a>       
+		</div>
+	</div>
+
+</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
