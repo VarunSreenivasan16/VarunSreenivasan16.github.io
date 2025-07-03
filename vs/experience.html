@@ -190,18 +190,11 @@ margin:auto;
     </div>
 </div>
 </body>
-									<p><b>Graph Methods for Particle Tracking</b></br></p><p> The High Luminosity - Large Hadron Collider is in need of efficient and fast particle track reconstruction as algorithms in use are
-										unable to scale to current requirements. This project explores Graph Neural Networks as a solution to this problem. </p>
-									<p>We used the TrackML Codalab dataset with 9000 events and 100,000 hits from 10,000 particles. The TrackML pipeline comprises of multiple stages
-										including processing, embedding, filtering, and GNN.
-									</p>
-									<p>In the Processing stage, feature engineering was performed to select cluster features to construct events from TrackML dataset.</p>
-									<p> 
-										The Embedding pipeline involving graph construction was developed to find a good distance metric between
-										pairs of 3D hit measurements wherein pairs belonging to same particles are nearby and further apart for different particles.
-										A significant speedup was achieved in the training stage by adapting the Nearest Neighbors algorithm to make use of Fixed Radius Nearest Neighbors (FRNN) on CUDA. Benchmarking 
-										was performed to establish the superiority of the FRNN library over competing solutions such as Facebook's Faiss and PyTorch3D KNN. The optimal PyTorch based embedding model with 99% efficiency and 1% purity was generated through hyperparameter scanning. 
-									</p>
+									<p><b>Graph Methods for Particle Tracking</b></br></p>
+<p>The High Luminosity Large Hadron Collider requires efficient and scalable particle track reconstruction, as existing algorithms cannot meet current demands. This project investigates Graph Neural Networks as a potential solution.</p>
+<p>We utilized the TrackML Codalab dataset, which contains 9,000 events and 100,000 hits from 10,000 particles. The TrackML pipeline consists of several stages: processing, embedding, filtering, and GNN.</p>
+<p>During the processing stage, I performed feature engineering to select cluster features and construct events from the TrackML dataset.</p>
+<p>For the embedding pipeline, I developed a graph construction method to identify an effective distance metric between pairs of 3D hit measurements—ensuring that hits from the same particle are close together, while those from different particles are farther apart. I achieved a significant speedup in the training stage by adapting the Nearest Neighbors algorithm to leverage Fixed Radius Nearest Neighbors (FRNN) on CUDA. Benchmarking demonstrated the superiority of the FRNN library over alternatives such as Facebook's Faiss and PyTorch3D KNN. Through hyperparameter scanning, I produced an optimal PyTorch-based embedding model with 99% efficiency and 1% purity.</p>
 									
 <ul class="actions">
 											<li><a href="https://iris-hep.org/fellows/VarunSreenivasan16.html" class="button big" target="_blank" rel="noopener noreferrer">Learn More</a></li>
@@ -240,19 +233,10 @@ margin:auto;
     </div>
 </div>
 </body>
-									<p><b>Deep Learning for Automated Defect Recognition in Electron Microscopy Images</b></br></p><p> Classifying defects in 
-										metallic microstructures is done widely in the metallographic industry to understand and assess the  quality and performance
-										 of metal alloys. In nuclear applications 
-										this process is critical to understand the effects of radiation and design for safe operation of nuclear reactors.</p><p> 
-											Defects are frequently identified through electron microscopy, and the image analysis is done by hand, which is slow, error prone and inconsistent.
-											Our project focused on automating the process using computer vision techniques based on convolution neural networks. 
-											The Univ. of WI team is exploring four implementations of networks, and this project is focused on one known as RetinaNet. </p>
-									<p>This project utlized the Keras implementation of RetinaNet. Hyperparameter optimization was performed to obtain the best model. 
-										An evaluation pipeline was developed to determine the recall and precision metrics. The detection model performed reasonably well with an average recall of 68% and average precision of 85% on the test set. 
-										Relatively low recall stems from inability to detect small defects.
-									</p>
-									
-									<p>I also co-authored a paper and presented the results at the NextGen Research Symposium in Golden, CO.</p>
+									<p><b>Deep Learning for Automated Defect Recognition in Electron Microscopy Images</b></br></p>
+<p>Classifying defects in metallic microstructures is a common practice in the metallographic industry to assess the quality and performance of metal alloys. In nuclear applications, this process is critical for understanding the effects of radiation and ensuring the safe operation of reactors.</p>
+<p>Defects are typically identified through electron microscopy, but manual image analysis is slow, error-prone, and inconsistent. Our project aimed to automate this process using computer vision techniques based on convolutional neural networks. The University of Wisconsin team explored four network architectures, with this project focusing on RetinaNet.</p>
+<p>I utilized the Keras implementation of RetinaNet and performed hyperparameter optimization to achieve the best model performance. I also developed an evaluation pipeline to measure recall and precision metrics. The resulting detection model achieved an average recall of 68% and an average precision of 85% on the test set. The relatively lower recall was primarily due to challenges in detecting small defects.</p>
 									<ul class="actions">
 											<li><a href="https://linkinghub.elsevier.com/retrieve/pii/S0927025621003037" class="button big" target="_blank" rel="noopener noreferrer">Published Paper</a></li>
 											<li><a href="./documents/UW_Poster.pdf" class="button big" target="_blank" rel="noopener noreferrer">Presentation</a></li>
