@@ -132,7 +132,7 @@ margin:auto;
 <p><b>GenAI Scalability Improvements:</b> Led a project to enhance the scalability and efficiency of the GenAI platform.</p>
 <ul>
   <li>Implemented Horizontal Pod Autoscaling (HPA) policies for all GenAI microservices after conducting targeted load tests to identify scaling needs.</li>
-  <li>Refactored the microservice responsible for LLM interactions to be multithreaded by moving the in-memory embedding model to a standalone service, improving throughput and reliability.</li>
+  <li>Refactored the microservice responsible for LLM interactions to be multithreaded by moving the in-memory embedding model, which was not threadsafe, to a standalone service, improving throughput and reliability.</li>
   <li>Reevaluated and optimized CPU and RAM resource allocations for all microservices in the GenAI stack, ensuring efficient use of cloud resources.</li>
   <li>These improvements resulted in a sizable reduction in Kubernetes-related cloud costs for that month and onwards.</li>
 </ul>
