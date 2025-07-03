@@ -142,6 +142,12 @@ margin:auto;
   <li>Increased available rate limits by leveraging regional resource quotas, reducing the risk of throttling and service interruptions.</li>
   <li>Significantly improved GenAI uptime and reliability for DataChat users by ensuring high availability and load balancing across regions.</li>
 </ul>
+<p><b>LLM Access Ticketing Service:</b> Proposed, designed, and implemented a ticketing service to prevent user abuse of limited LLM access and reduce rate limit errors. The system:</p>
+<ul>
+  <li>Prioritized requests based on LLM type and the specific GenAI feature being used, ensuring fair and efficient resource allocation.</li>
+  <li>Utilized Redis-based queues and maps to manage and track ticket issuance and consumption in real time.</li>
+  <li>Improved overall reliability and user experience by minimizing rate limit errors and protecting critical LLM resources from abuse.</li>
+</ul>
 <p><b>Custom LLM Deployment Research:</b> Conducted in-depth research to evaluate options for deploying custom large language models (LLMs) in production. My work included:</p>
 <ul>
   <li>Investigated and compared cloud providers and platforms (AWS, GCP, Modal) for LLM hosting, focusing on cost, scalability, and ease of integration.</li>
