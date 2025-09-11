@@ -163,10 +163,8 @@ margin:auto;
 </div>
 </body>
 									<p><b>Graph Methods for Particle Tracking</b></br></p>
-<p>The High Luminosity Large Hadron Collider requires efficient and scalable particle track reconstruction, as existing algorithms cannot meet current demands. This project investigates Graph Neural Networks as a potential solution.</p>
-<p>We utilized the TrackML Codalab dataset, which contains 9,000 events and 100,000 hits from 10,000 particles. The TrackML pipeline consists of several stages: processing, embedding, filtering, and GNN.</p>
-<p>During the processing stage, I performed feature engineering to select cluster features and construct events from the TrackML dataset.</p>
-<p>For the embedding pipeline, I developed a graph construction method to identify an effective distance metric between pairs of 3D hit measurements—ensuring that hits from the same particle are close together, while those from different particles are farther apart. I achieved a significant speedup in the training stage by adapting the Nearest Neighbors algorithm to leverage Fixed Radius Nearest Neighbors (FRNN) on CUDA. Benchmarking demonstrated the superiority of the FRNN library over alternatives such as Facebook's Faiss and PyTorch3D KNN. Through hyperparameter scanning, I produced an optimal PyTorch-based embedding model with 99% efficiency and 1% purity.</p>
+<p>The High Luminosity Large Hadron Collider requires efficient and scalable particle track reconstruction, as existing algorithms cannot meet current demands. This project investigated Graph Neural Networks as a potential solution.</p>
+<p>I utilized the TrackML Codalab dataset, which contains 9,000 events and 100,000 hits from 10,000 particles. I developed embedding pipelines to find distance metric between 3D hit measurements pairs, optimizing particle differentiation and accelerated  the nearest neighbors search by replacing Facebook’s Faiss with Fixed Radius Nearest Neighbors (FRNN) on CUDA.</p>
 									
 <ul class="actions">
 											<li><a href="https://iris-hep.org/fellows/VarunSreenivasan16.html" class="button big" target="_blank" rel="noopener noreferrer">Learn More</a></li>
